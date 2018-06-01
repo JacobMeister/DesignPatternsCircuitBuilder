@@ -13,11 +13,14 @@ namespace DesignPatterns1
         [STAThread]
         static void Main()
         {
-            IOutputHandler window = new Form1();
-            CircuitController C = new CircuitController(window);
-            Form window2 = (Form)window;
+           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            CircuitController C = new CircuitController();
+            IOutputHandler mainWindow = new Form1(C);
+
+            C.SetOutputHandler(mainWindow);
+            Form window2 = (Form)mainWindow;
             Application.Run(window2);
         }
     }

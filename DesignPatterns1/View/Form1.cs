@@ -14,13 +14,9 @@ namespace DesignPatterns1
     public partial class Form1 : Form, IOutputHandler
     {
         private IInputHandler input;
-        public Form1()
+        public Form1(IInputHandler input)
         {
             InitializeComponent();
-        }
-
-        public void setInputHandler(IInputHandler input)
-        {
             this.input = input;
         }
 

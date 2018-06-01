@@ -9,7 +9,7 @@ namespace DesignPatterns1.Nodes
         {
         }
 
-		public void AddOutputNode(IOutputNode outputNode)
+		public void AddOutputNode(INode iNode)
 		{
 			throw new System.NotImplementedException();
 		}
@@ -73,9 +73,9 @@ namespace DesignPatterns1.Nodes
 			throw new System.NotImplementedException();
 		}
 
-		public string GetName()
-		{
-			throw new System.NotImplementedException();
-		}
-	}
+        public string GetName()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

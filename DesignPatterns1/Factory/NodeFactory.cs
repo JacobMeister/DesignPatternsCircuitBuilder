@@ -7,7 +7,7 @@ namespace DesignPatterns1.Factory
 {
 	public class NodeFactory
 	{
-		private Dictionary<String, Type> _types;
+		private Dictionary<String, Type> _types = new Dictionary<string, Type>();
 
 		public NodeFactory()
 		{
@@ -17,12 +17,12 @@ namespace DesignPatterns1.Factory
 		private void Initialize() {
 			_types["AND"] = typeof(AndNode);
 			_types["NOT"] = typeof(NotNode);
-			_types["NOTAND"] = typeof(NotAndNode);
-			_types["NOTOR"] = typeof(NotOrNode);
+			_types["NAND"] = typeof(NotAndNode);
+			_types["NOR"] = typeof(NotOrNode);
 			_types["OR"] = typeof(OrNode);
-			_types["OUTPUT"] = typeof(OutputNode);
-			_types["INPUTHIGH"] = typeof(InputHighNode);
-			_types["INPUTLOW"] = typeof(InputLowNode);
+			_types["PROBE"] = typeof(OutputNode);
+			_types["INPUT_HIGH"] = typeof(InputHighNode);
+			_types["INPUT_LOW"] = typeof(InputLowNode);
 			_types["XOR"] = typeof(XorNode);
 		}
 

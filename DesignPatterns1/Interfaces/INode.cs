@@ -6,7 +6,7 @@ namespace DesignPatterns1.Interfaces
     {
         void DoAction();
         void AddValue(bool hasValue);
-        void AddOutputNode(IOutputNode outputNode);
+        void AddOutputNode(INode INode);
         void SetInputAmount(int inputAmount);
         void HeightenInputAmount();
         List<INode> GetOutputNodes();

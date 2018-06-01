@@ -15,7 +15,7 @@ namespace DesignPatterns1.Nodes
 		private String literalName;
 		private String name = "PROBE";
 		private bool isInput = false;
-		private bool isOutput = false;
+		private bool isOutput = true;
 		private IOutputHandler handler;
 
 		public OutputNode()
@@ -24,7 +24,7 @@ namespace DesignPatterns1.Nodes
 			inputAmount = 0;
 		}
 
-		public void AddOutputNode(IOutputNode outputNode)
+		public void AddOutputNode(INode outputNode)
 		{
 			outputNodes.Add(outputNode);
 		}

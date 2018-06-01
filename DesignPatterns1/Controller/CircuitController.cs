@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using DesignPatterns1.Interfaces;
 using DesignPatterns1.Factory;
+using DesignPatterns1.Visitor;
+
 namespace DesignPatterns1.Controller
 {
     public class CircuitController : IInputHandler
@@ -12,11 +14,17 @@ namespace DesignPatterns1.Controller
         private Dictionary<String, IOutputNode> outputNodes = new Dictionary<string, IOutputNode>();
         private IOutputHandler output;
 
-        public CircuitController(IOutputHandler output)
+        public CircuitController()
+        {
+            
+        }
+
+
+        public void SetOutputHandler(IOutputHandler output)
         {
             this.output = output;
         }
-        
+
         public void ChangeInputNodes(List<string> temp)
         {
             foreach (string s in temp)
@@ -25,11 +33,11 @@ namespace DesignPatterns1.Controller
                 var value = this.inputNodes[s];
                 if (value.GetName() == "INPUT_HIGH")
                 {
-                    value.Accept(new InputNodeDisplayVisitor(this));
+                    value.Accept(new InputNodeVisitor(this));
                 }
                 else
                 {
-                    value.Accept(new InputNodeDisplayVisitor(this));
+                    value.Accept(new InputNodeVisitor(this));
                 }
             }
         }
@@ -101,7 +109,8 @@ namespace DesignPatterns1.Controller
                     if (s.Contains(":") && s.EndsWith(";"))
                     {
                         string word = s.Replace(";", "");
-                        word = word.Replace("\\s+", "");
+                        word = word.Replace("\t", "");
+                        word = word.Replace("\\s", "");
 
                         String[] parts = word.Split(':');
 
@@ -112,7 +121,8 @@ namespace DesignPatterns1.Controller
                         {
                             try
                             {
-                                INode node = NodeFactory.createFromName(type);
+                                NodeFactory factory = new NodeFactory();
+                                INode node = factory.CreateFromName(type);
                                 node.SetLiteralName(name);
                                 node.SetOutputHandler(output);
 
@@ -138,7 +148,7 @@ namespace DesignPatterns1.Controller
                             String[] names = type.Split(',');
                             foreach(String z in names)
                             {
-                                node.AddOutputNode((IOutputNode)nodes[z]);
+                                node.AddOutputNode(nodes[z]);
                                 nodes[z].HeightenInputAmount();
                             }
                         }
@@ -199,9 +209,9 @@ namespace DesignPatterns1.Controller
             foreach (KeyValuePair<String, INode> entry in nodes)
             {
                 
-                if (!entry.Value.Didwork();)
+                if (!entry.Value.DidWork())
                 {
-                    output.Write("WARING: Node " + entry.Value.getLiteralName() + " did not work correctly!");
+                    output.Write("WARING: Node " + entry.Value.GetLiteralName() + " did not work correctly!");
                 }
             }
             
