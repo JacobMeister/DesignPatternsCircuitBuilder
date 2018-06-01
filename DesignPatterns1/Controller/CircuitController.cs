@@ -5,7 +5,7 @@ using DesignPatterns1.Interfaces;
 using DesignPatterns1.Factory;
 namespace DesignPatterns1.Controller
 {
-    class CircuitController : IInputHandler
+    public class CircuitController : IInputHandler
     {
         private Dictionary<String, IInputNode> inputNodes = new Dictionary<string, IInputNode>();
         private Dictionary<String, INode> nodes = new Dictionary<string, INode>();
@@ -196,13 +196,15 @@ namespace DesignPatterns1.Controller
 
             output.Write("Circuit completed in " + (end_time - start_time) + " nanoseconds.");
 
-            for (String s : nodes.keySet())
+            foreach (KeyValuePair<String, INode> entry in nodes)
             {
-                if (!nodes.get(s).didWork())
+                
+                if (!entry.Value.Didwork();)
                 {
-                    output.write("WARING: Node " + nodes.get(s).getLiteralName() + " did not work correctly!");
+                    output.Write("WARING: Node " + entry.Value.getLiteralName() + " did not work correctly!");
                 }
             }
+            
         }
 
         public long NanoTime()
