@@ -14,9 +14,13 @@ namespace DesignPatterns1
     public partial class Form1 : Form, IOutputHandler
     {
         private IInputHandler input;
-        public Form1(IInputHandler input)
+        public Form1()
         {
             InitializeComponent();
+        }
+
+        public void setInputHandler(IInputHandler input)
+        {
             this.input = input;
         }
 
@@ -33,7 +37,7 @@ namespace DesignPatterns1
 
         private void Button5_Click(object sender, EventArgs e)
         {
-
+            //todo
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -48,27 +52,33 @@ namespace DesignPatterns1
 
         private void Button6_Click(object sender, EventArgs e)
         {
-
+            input.Start();
         }
 
         private void Button7_Click(object sender, EventArgs e)
         {
-
+            input.ShowCircuit();
         }
 
         public void DoOutput(string name, bool value)
         {
-            throw new NotImplementedException();
+            textBox1.AppendText("The output from " + name + " is " + value + "." + "\n");
         }
 
         public void SendNodeValues(string name, string type, List<bool> inputs, bool output, long time)
         {
-            throw new NotImplementedException();
+            textBox1.AppendText("Node " + name + "(" + type + ") received inputs ");
+
+            foreach(Boolean B in inputs)
+            {
+                textBox1.AppendText(B + " ");
+            }
+            textBox1.AppendText("and sent ouput " + output + " in " + time + " nanoseconds.\n");
         }
 
         public void Write(string s)
         {
-            throw new NotImplementedException();
+            textBox1.AppendText(s + "\n");
         }
     }
 }

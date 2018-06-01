@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DesignPatterns1.Interfaces;
-using DesignPatterns1.View;
 
 namespace DesignPatterns1.Controller
 {
@@ -16,11 +12,7 @@ namespace DesignPatterns1.Controller
         {
             this.output = output;
         }
-
-        public FileReader()
-        {
-            this.output = new ViewClass();
-        }
+        
 
         public List<String> GetLines(String pathString)
         {

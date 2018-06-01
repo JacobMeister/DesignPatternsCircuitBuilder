@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using DesignPatterns1.Interfaces;
+using DesignPatterns1.Factory;
 namespace DesignPatterns1.Controller
 {
     class CircuitController : IInputHandler
@@ -22,14 +23,13 @@ namespace DesignPatterns1.Controller
 
             {
                 var value = this.inputNodes[s];
-                if (value.getName() == "INPUT_HIGH")
+                if (value.GetName() == "INPUT_HIGH")
                 {
-                    value.accept(new InputNodeDisplayVisitor(this));
-
+                    value.Accept(new InputNodeDisplayVisitor(this));
                 }
                 else
                 {
-                    value.accept(new InputNodeDisplayVisitor(this));
+                    value.Accept(new InputNodeDisplayVisitor(this));
                 }
             }
         }
@@ -65,7 +65,7 @@ namespace DesignPatterns1.Controller
 
             if (s.ToLower().EndsWith(".txt"))
             {
-                createNodes(s);
+                CreateNodes(s);
 
                 if (outputNodes.Count == 0)
                 {
@@ -74,9 +74,9 @@ namespace DesignPatterns1.Controller
 
                 foreach (KeyValuePair<String, INode> entry in nodes)
                 {
-                    if(entry.GetOutputNodes().size() < 1 && !entry.IsOutput())
+                    if(entry.Value.GetOutputNodes().Count < 1 && !entry.Value.IsOutput())
                     {
-                        output.Write("WARING: Node " + entry.GetLiteralName() + " does not have any output nodes!");
+                        output.Write("WARING: Node " + entry.Value.GetLiteralName() + " does not have any output nodes!");
                     }
                 }
 
@@ -89,18 +89,77 @@ namespace DesignPatterns1.Controller
 
         }
 
+        public void CreateNodes(String url)
+        {
+            FileReader fr = new FileReader(output);
+
+            foreach(string s in fr.GetLines(url))
+            {
+                if (!s.StartsWith("#") && !string.IsNullOrEmpty(s))
+                {
+
+                    if (s.Contains(":") && s.EndsWith(";"))
+                    {
+                        string word = s.Replace(";", "");
+                        word = word.Replace("\\s+", "");
+
+                        String[] parts = word.Split(':');
+
+                        String name = parts[0];
+                        String type = parts[1];
+
+                        if (!nodes.ContainsKey(name))
+                        {
+                            try
+                            {
+                                INode node = NodeFactory.createFromName(type);
+                                node.SetLiteralName(name);
+                                node.SetOutputHandler(output);
+
+                                if (node.IsInput())
+                                {
+                                    inputNodes.Add(name, (IInputNode)node);
+                                }
+                                else if (node.IsOutput())
+                                {
+                                    IOutputNode newNode = (IOutputNode)node;
+                                    outputNodes.Add(name, (IOutputNode)newNode);
+                                }
+                                nodes.Add(name, node);
+                            }
+                            catch (Exception e)
+                            {
+                                output.Write("The file you have provided is invalid.\nPlease validate in order to use this product.");
+                            }
+                        }
+                        else
+                        {
+                            INode node = nodes[name];
+                            String[] names = type.Split(',');
+                            foreach(String z in names)
+                            {
+                                node.AddOutputNode((IOutputNode)nodes[z]);
+                                nodes[z].HeightenInputAmount();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
         public void ShowCircuit()
         {
             foreach (KeyValuePair<String, INode> entry in nodes)
             {
                 String outputs = "";
 
-                foreach (INode n in entry.GetOutputNodes())
+                foreach (INode n in entry.Value.GetOutputNodes())
                 {
                     outputs += n.GetLiteralName() + "(" + n.GetName() + "), ";
                 }
                 
-                if (entry.GetOutputNodes().size() < 1)
+                if (entry.Value.GetOutputNodes().Count < 1)
                 {
                     outputs = "FINAL.";
                 }
@@ -110,7 +169,7 @@ namespace DesignPatterns1.Controller
                     outputs = outputs + ".";
                 }
 
-                String circuitString = "NODE: " + entry.GetLiteralName() + "(" + entry.GetName() + ") - OUTPUT: " + outputs;
+                String circuitString = "NODE: " + entry.Value.GetLiteralName() + "(" + entry.Value.GetName() + ") - OUTPUT: " + outputs;
 
                 output.Write(circuitString);
             }
@@ -121,20 +180,21 @@ namespace DesignPatterns1.Controller
             //todo
             foreach (KeyValuePair<String, INode> entry in nodes)
             {
-                entry.ClearValues();
+                entry.Value.ClearValues();
             }
 
 
             long start_time = NanoTime();
 
-            for (String s : inputNodes.keySet())
+            foreach (KeyValuePair<String, INode> entry in nodes)
             {
-                inputNodes.get(s).doAction();
+                entry.Value.DoAction();
             }
+            
 
             long end_time = NanoTime();
 
-            output.write("Circuit completed in " + (end_time - start_time) + " nanoseconds.");
+            output.Write("Circuit completed in " + (end_time - start_time) + " nanoseconds.");
 
             for (String s : nodes.keySet())
             {
