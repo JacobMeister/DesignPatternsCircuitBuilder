@@ -5,7 +5,7 @@ namespace DesignPatterns1.Interfaces
     public interface INode
     {
         void DoAction();
-        void HasValue(bool hasValue);
+        void AddValue(bool hasValue);
         void AddOutputNode(IOutputNode outputNode);
         void SetInputAmount(int inputAmount);
         void HeightenInputAmount();

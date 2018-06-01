@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns1.Nodes
 {
-    class AndNode
+	public class AndNode : Node
     {
     }
 }
