@@ -17,5 +17,6 @@ namespace DesignPatterns1.Interfaces
         void ClearValues();
         bool DidWork();
         void SetOutputHandler(IOutputHandler handler);
+		string GetName();
     }
 }
