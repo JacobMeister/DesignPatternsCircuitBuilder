@@ -72,5 +72,10 @@ namespace DesignPatterns1.Nodes
 		{
 			throw new System.NotImplementedException();
 		}
+
+		public string GetName()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }
