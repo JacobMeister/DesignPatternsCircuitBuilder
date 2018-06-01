@@ -4,7 +4,7 @@ using System.Diagnostics;
 using DesignPatterns1.Interfaces;
 namespace DesignPatterns1.Controller
 {
-    class CircuitController : IInputHandler
+    public class CircuitController : IInputHandler
     {
         private Dictionary<String, IInputNode> inputNodes = new Dictionary<string, IInputNode>();
         private Dictionary<String, INode> nodes = new Dictionary<string, INode>();
