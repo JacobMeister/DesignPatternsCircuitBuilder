@@ -45,13 +45,13 @@ namespace DesignPatterns1.Controller
             return null;
         }
 
-        public Dictionary<String, IOutputNode> getOutputNodes()
+        public Dictionary<String, IOutputNode> GetOutputNodes()
         {
             return this.outputNodes;
 
         }
 
-        public Dictionary<String, INode> getNodes()
+        public Dictionary<String, INode> GetNodes()
         {
             return this.nodes;
 

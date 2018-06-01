@@ -16,7 +16,7 @@ namespace DesignPatterns1.Nodes
 		private bool isOutput = false;
 		private IOutputHandler handler;
 
-		public String getName()
+		public String GetName()
 		{
 			return name;
 		}
@@ -38,7 +38,7 @@ namespace DesignPatterns1.Nodes
 			outputNodes.Add(node);
 		}
 
-		public void setOutputNodes(List<INode> outputNodes)
+		public void SetOutputNodes(List<INode> outputNodes)
 		{
 			this.outputNodes = outputNodes;
 		}

@@ -93,6 +93,7 @@
     <Compile Include="Visitor\InputNodeVisitor.cs" />
     <Compile Include="Nodes\InputLowNode.cs" />
     <Compile Include="Nodes\InputHighNode.cs" />
+    <Compile Include="Factory\NodeFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
