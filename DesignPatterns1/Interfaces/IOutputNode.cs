@@ -1,6 +1,6 @@
 ﻿namespace DesignPatterns1.Interfaces
 {
-    public interface IOutputNode
+	public interface IOutputNode : INode
     {
         void SendOutput();
     }
