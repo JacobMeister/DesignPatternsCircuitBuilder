@@ -45,14 +45,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Controller\CircuitController.cs" />
+    <Compile Include="Controller\FileReader.cs" />
+    <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="View\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IInputHandler.cs" />
+    <Compile Include="Interfaces\IInputNode.cs" />
+    <Compile Include="Interfaces\INode.cs" />
+    <Compile Include="Interfaces\InputNodeVisitor.cs" />
+    <Compile Include="Interfaces\IOutputHandler.cs" />
+    <Compile Include="Interfaces\IOutputNode.cs" />
+    <Compile Include="Nodes\AndNode.cs" />
+    <Compile Include="Nodes\INode.cs" />
+    <Compile Include="Nodes\Node.cs" />
+    <Compile Include="Nodes\NotAndNode.cs" />
+    <Compile Include="Nodes\NotNode.cs" />
+    <Compile Include="Nodes\NotOrNode.cs" />
+    <Compile Include="Nodes\OrNode.cs" />
+    <Compile Include="Nodes\OutputNode.cs" />
+    <Compile Include="Nodes\XorNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="View\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -74,6 +94,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Factory\" />
+    <Folder Include="Visitor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
