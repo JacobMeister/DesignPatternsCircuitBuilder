@@ -1,4 +1,5 @@
-﻿using DesignPatterns1.Visitor;
+﻿using DesignPatterns1.Components.Edges;
+using DesignPatterns1.Visitor;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,26 +11,24 @@ namespace DesignPatterns1.Components.Base
 {
     public abstract class Component
     {
-        private string _name;
-        private string _typeName;
-        private List<Component> _outputComponents;
-        private List<bool> _inputs;
-        private bool _result;
-        private long _startTime;
-        private long _endTime;
+        protected string _name;
+        protected string _typeName;
+        protected List<Edge> _outputEdges;
+        protected List<bool> _inputs;
+        protected long _startTime;
+        protected long _endTime;
 
         public Component(string name)
         {
             _name = name;
             _typeName = "";
-            _outputComponents = new List<Component>();
+            _outputEdges = new List<Edge>();
             _inputs = new List<bool>();
-            _result = false;
         }
 
-        public void AddOutputComponent(Component outputComponent)
+        public void AddEdge(Edge outputEdge)
         {
-            _outputComponents.Add(outputComponent);
+            _outputEdges.Add(outputEdge);
         }
 
         public void ReceiveInput(bool input)
@@ -37,12 +36,11 @@ namespace DesignPatterns1.Components.Base
             _inputs.Add(input);
         }
 
-        public void Reset()
+        public virtual void Reset()
         {
             _name = "";
-            _outputComponents.Clear();
+            _outputEdges.Clear();
             _inputs.Clear();
-            _result = false;
             _startTime = 0;
             _endTime = 0;
         }
@@ -58,17 +56,9 @@ namespace DesignPatterns1.Components.Base
             EndTime();
         }
 
-        public bool CalculateResult()
-        {
-            return _result;
-        }
+        public abstract void CalculateResult();
 
-        public void FeedResultToNext()
-        {
-            _outputComponents.ForEach((Component component) => {
-                component.ReceiveInput(_result);
-            });
-        }
+        public abstract void FeedResultToNext();
 
         public void StartTime()
         {

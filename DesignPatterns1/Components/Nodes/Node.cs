@@ -1,81 +1,22 @@
 ﻿using System.Collections.Generic;
+using DesignPatterns1.Components.Base;
 using DesignPatterns1.Interfaces;
 
 namespace DesignPatterns1.Nodes
 {
-   public class Node : INode
+    public abstract class Node : Component
     {
-        public Node()
+        protected bool _result;
+
+        public Node(string name) : base(name)
         {
+            _result = false;
         }
 
-		public void AddOutputNode(INode iNode)
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public void ClearValues()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public bool DidWork()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public void DoAction() {
-
-        }
-
-		public string GetLiteralName()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public List<INode> GetOutputNodes()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public void AddValue(bool hasValue)
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public void HeightenInputAmount()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public bool IsInput()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public bool IsOutput()
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public void SetInputAmount(int inputAmount)
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public void SetLiteralName(string name)
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public void SetOutputHandler(IOutputHandler handler)
-		{
-			throw new System.NotImplementedException();
-		}
-
-        public string GetName()
+        public override void Reset()
         {
-            throw new System.NotImplementedException();
+            base.Reset();
+            _result = false;
         }
     }
 }

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Circuit\Circuit.cs" />
+    <Compile Include="Components\Edges\Edge.cs" />
     <Compile Include="Controller\CircuitController.cs" />
     <Compile Include="Controller\FileReader.cs" />
     <Compile Include="Components\Base\Component.cs" />
