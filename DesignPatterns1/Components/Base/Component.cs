@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesignPatterns1.Nodes.Base
+namespace DesignPatterns1.Components.Base
 {
     public abstract class Component
     {
@@ -21,6 +21,10 @@ namespace DesignPatterns1.Nodes.Base
         public Component(string name)
         {
             _name = name;
+            _typeName = "";
+            _outputComponents = new List<Component>();
+            _inputs = new List<bool>();
+            _result = false;
         }
 
         public void AddOutputComponent(Component outputComponent)
@@ -56,7 +60,7 @@ namespace DesignPatterns1.Nodes.Base
 
         public bool CalculateResult()
         {
-            return false;
+            return _result;
         }
 
         public void FeedResultToNext()
