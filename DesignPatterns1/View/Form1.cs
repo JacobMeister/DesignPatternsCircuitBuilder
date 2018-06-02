@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DesignPatterns1.Interfaces;
+using DesignPatterns1.View;
 
 namespace DesignPatterns1
 {
@@ -94,6 +95,12 @@ namespace DesignPatterns1
                 checkedListBox1.SelectedItem.ToString()
             };
             input.ChangeInputNodes(temp);
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            MultipleCircuits multipleCircuits = new MultipleCircuits();
+            multipleCircuits.ShowDialog();
         }
     }
 }

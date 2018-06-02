@@ -13,16 +13,17 @@ namespace DesignPatterns1.Controller
         private Dictionary<String, INode> nodes = new Dictionary<string, INode>();
         private Dictionary<String, IOutputNode> outputNodes = new Dictionary<string, IOutputNode>();
         private IOutputHandler output;
+        private CircuitParser parser;
 
         public CircuitDirector()
         {
             
         }
-
-
+        
         public void SetOutputHandler(IOutputHandler output)
         {
             this.output = output;
+            this.parser = new CircuitParser(output);
         }
 
         public void ChangeInputNodes(List<string> temp)
@@ -66,95 +67,85 @@ namespace DesignPatterns1.Controller
 
         public bool SetCircuit(string s)
         {
+
             inputNodes.Clear();
             outputNodes.Clear();
             nodes.Clear();
-
+            
             if (s.ToLower().EndsWith(".txt"))
             {
-                CreateNodes(s);
-
-                if (outputNodes.Count == 0)
-                {
-                    output.Write("WARNING: Your circuit does not have any output nodes!");
-                }
-
-                foreach (KeyValuePair<String, INode> entry in nodes)
-                {
-                    if(entry.Value.GetOutputNodes().Count < 1 && !entry.Value.IsOutput())
-                    {
-                        output.Write("WARING: Node " + entry.Value.GetLiteralName() + " does not have any output nodes!");
-                    }
-                }
-
+                parser.ParseCircuit(s);
+                CreateNodes(parser.GetNodes(), parser.GetEdges());
                 return true;
             }
             else
             {
+                output.Write("WARING: File must have .txt extension!");
                 return false;
             }
+            
+            //    if (outputNodes.Count == 0)
+            //    {
+            //        output.Write("WARNING: Your circuit does not have any output nodes!");
+            //    }
+
+            //    foreach (KeyValuePair<String, INode> entry in nodes)
+            //    {
+            //        if(entry.Value.GetOutputNodes().Count < 1 && !entry.Value.IsOutput())
+            //        {
+            //            output.Write("WARING: Node " + entry.Value.GetLiteralName() + " does not have any output nodes!");
+            //        }
+            //    }
+            //    return true;
+           
 
         }
 
-        public void CreateNodes(String url)
+        public void CreateNodes(Dictionary<String, String> nodeList, Dictionary<String, List<String>> edgeList)
         {
-            FileReader fr = new FileReader(output);
 
-            foreach(string s in fr.GetLines(url))
-            {
-                if (!s.StartsWith("#") && !string.IsNullOrEmpty(s))
-                {
+            //builder.build(nodeList, edgeList);
 
-                    if (s.Contains(":") && s.EndsWith(";"))
-                    {
-                        string word = s.Replace(";", "");
-                        word = word.Replace("\t", "");
-                        word = word.Replace("\\s", "");
-                        
-                        String[] parts = word.Split(':');
+                        //should go in builder
+                        //if (!nodes.ContainsKey(name))
+                        //{
+                        //    try
+                        //    {
+                        //        NodeFactory factory = new NodeFactory();
+                        //        INode node = factory.CreateFromName(type);
+                        //        node.SetLiteralName(name);
+                        //        node.SetOutputHandler(output);
 
-                        String name = parts[0].Trim();
-                        String type = parts[1].Trim();
-                        
+                        //        if (node.IsInput())
+                        //        {
+                        //            inputNodes.Add(name, (IInputNode)node);
+                        //        }
+                        //        else if (node.IsOutput())
+                        //        {
+                        //            IOutputNode newNode = (IOutputNode)node;
+                        //            outputNodes.Add(name, (IOutputNode)newNode);
+                        //        }
+                        //        nodes.Add(name, node);
+                        //    }
+                        //    catch (Exception e)
+                        //    {
+                        //        //should stay here
+                        //        output.Write("The file you have provided is invalid.\nPlease validate in order to use this product.");
+                        //        //
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    INode node = nodes[name];
+                        //    String[] names = type.Split(',');
+                        //    foreach(String z in names)
+                        //    {
+                        //        node.AddOutputNode(nodes[z]);
+                        //        nodes[z].HeightenInputAmount();
+                        //    }
+                        //}
+             
 
-                        if (!nodes.ContainsKey(name))
-                        {
-                            try
-                            {
-                                NodeFactory factory = new NodeFactory();
-                                INode node = factory.Create(type);
-                                node.SetLiteralName(name);
-                                node.SetOutputHandler(output);
-
-                                if (node.IsInput())
-                                {
-                                    inputNodes.Add(name, (IInputNode)node);
-                                }
-                                else if (node.IsOutput())
-                                {
-                                    IOutputNode newNode = (IOutputNode)node;
-                                    outputNodes.Add(name, (IOutputNode)newNode);
-                                }
-                                nodes.Add(name, node);
-                            }
-                            catch (Exception e)
-                            {
-                                output.Write("The file you have provided is invalid.\nPlease validate in order to use this product.");
-                            }
-                        }
-                        else
-                        {
-                            INode node = nodes[name];
-                            String[] names = type.Split(',');
-                            foreach(String z in names)
-                            {
-                                node.AddOutputNode(nodes[z]);
-                                nodes[z].HeightenInputAmount();
-                            }
-                        }
-                    }
-                }
-            }
         }
 
 

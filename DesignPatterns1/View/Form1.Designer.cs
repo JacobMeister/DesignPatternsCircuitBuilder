@@ -40,11 +40,13 @@ namespace DesignPatterns1
             this.button4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.checkedListBox1);
             this.panel1.Controls.Add(this.button8);
@@ -59,7 +61,7 @@ namespace DesignPatterns1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 176);
+            this.label1.Location = new System.Drawing.Point(3, 212);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 7;
@@ -69,7 +71,7 @@ namespace DesignPatterns1
             // 
             this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(4, 192);
+            this.checkedListBox1.Location = new System.Drawing.Point(4, 228);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(131, 184);
             this.checkedListBox1.TabIndex = 6;
@@ -79,7 +81,7 @@ namespace DesignPatterns1
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(4, 32);
+            this.button8.Location = new System.Drawing.Point(4, 62);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(131, 21);
             this.button8.TabIndex = 4;
@@ -89,7 +91,7 @@ namespace DesignPatterns1
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(4, 118);
+            this.button7.Location = new System.Drawing.Point(4, 154);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(131, 23);
             this.button7.TabIndex = 3;
@@ -99,7 +101,7 @@ namespace DesignPatterns1
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(3, 89);
+            this.button6.Location = new System.Drawing.Point(3, 125);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(132, 23);
             this.button6.TabIndex = 2;
@@ -128,6 +130,16 @@ namespace DesignPatterns1
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(4, 33);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(131, 23);
+            this.button5.TabIndex = 8;
+            this.button5.Text = "Multiple Circuits";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(903, 574);
@@ -155,6 +167,7 @@ namespace DesignPatterns1
         private CheckedListBox checkedListBox1;
         private Label label1;
         private ToolTip toolTip1;
+        private Button button5;
     }
 }
 
