@@ -14,10 +14,13 @@ namespace DesignPatterns1
     public partial class Form1 : Form, IOutputHandler
     {
         private IInputHandler input;
+        private Dictionary<String, IInputNode> inputNodes = new Dictionary<string, IInputNode>();
+
         public Form1(IInputHandler input)
         {
             InitializeComponent();
             this.input = input;
+           
         }
 
         private void Button4_Click(object sender, EventArgs e)
@@ -29,11 +32,18 @@ namespace DesignPatterns1
                 path = file.FileName;
                 input.SetCircuit(path);
             }
-        }
-
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            //todo
+            this.inputNodes = input.GetInputNodes();
+            checkedListBox1.Items.Clear();
+            foreach (KeyValuePair<String, IInputNode> entry in inputNodes)
+            {
+                Boolean b = false;
+                if (entry.Value.GetName().Equals("INPUT_HIGH"))
+                {
+                    b = true;
+                }
+                this.checkedListBox1.Items.Add(entry.Value.GetLiteralName(),  b);
+            }
+           
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -75,6 +85,15 @@ namespace DesignPatterns1
         public void Write(string s)
         {
             textBox1.AppendText(s + "\n");
+        }
+
+        private void CheckedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<string> temp = new List<string>
+            {
+                checkedListBox1.SelectedItem.ToString()
+            };
+            input.ChangeInputNodes(temp);
         }
     }
 }

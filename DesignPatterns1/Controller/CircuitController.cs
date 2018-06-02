@@ -28,7 +28,6 @@ namespace DesignPatterns1.Controller
         public void ChangeInputNodes(List<string> temp)
         {
             foreach (string s in temp)
-
             {
                 var value = this.inputNodes[s];
                 if (value.GetName() == "INPUT_HIGH")
