@@ -1,0 +1,30 @@
+# Full-adder. Deze file bevat een correct circuit
+# 
+#
+#
+# Description of all the nodes
+#
+A:	INPUT_HIGH;
+B:	INPUT_HIGH;
+Cin: 	INPUT_LOW;
+Cout:	PROBE;
+S:	PROBE;
+NODE1:	XOR;
+NODE2:	XOR;
+NODE3:	AND;
+NODE4:	AND;
+NODE5:	OR;
+
+#
+#
+# Description of all the edges
+#
+Cin:	NODE2,NODE3;
+A:	NODE1,NODE4;
+B:	NODE1,NODE4;
+NODE1:	NODE2,NODE3;
+NODE2:	S;
+NODE3:	NODE5;
+NODE4:	NODE5;
+NODE5:	Cout;
+

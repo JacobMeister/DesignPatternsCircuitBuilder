@@ -29,7 +29,7 @@ namespace DesignPatterns1.Nodes
 
 		public void DoAction()
 		{
-			outputNodes.ForEach((INode node) => node.AddValue(false));
+			outputNodes.ForEach((INode node) => node.AddValue(true));
 		}
 
 

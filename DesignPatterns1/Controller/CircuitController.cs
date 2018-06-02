@@ -111,11 +111,12 @@ namespace DesignPatterns1.Controller
                         string word = s.Replace(";", "");
                         word = word.Replace("\t", "");
                         word = word.Replace("\\s", "");
-
+                        
                         String[] parts = word.Split(':');
 
-                        String name = parts[0];
-                        String type = parts[1];
+                        String name = parts[0].Trim();
+                        String type = parts[1].Trim();
+                        
 
                         if (!nodes.ContainsKey(name))
                         {
@@ -187,7 +188,6 @@ namespace DesignPatterns1.Controller
 
         public void Start()
         {
-            //todo
             foreach (KeyValuePair<String, INode> entry in nodes)
             {
                 entry.Value.ClearValues();
@@ -196,7 +196,7 @@ namespace DesignPatterns1.Controller
 
             long start_time = NanoTime();
 
-            foreach (KeyValuePair<String, INode> entry in nodes)
+            foreach (KeyValuePair<String, IInputNode> entry in inputNodes)
             {
                 entry.Value.DoAction();
             }

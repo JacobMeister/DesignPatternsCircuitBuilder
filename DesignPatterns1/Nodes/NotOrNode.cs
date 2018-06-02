@@ -59,7 +59,7 @@ namespace DesignPatterns1.Nodes
 		{
 			long start_time = NanoTime();
 
-			Boolean output = false;
+			Boolean output = true;
 
 			//AND, if all values are true, send true, otherwise send false.
 			values.ForEach((bool obj) => {

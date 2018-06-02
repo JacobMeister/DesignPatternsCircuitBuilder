@@ -59,9 +59,7 @@ namespace DesignPatterns1.Nodes
 		{
 			long start_time = NanoTime();
 
-			Boolean output = false;
-
-			output = values[0];
+			Boolean output = !values[0];
 
 			outputNodes.ForEach((INode obj) => obj.AddValue(output));
 
