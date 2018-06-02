@@ -45,8 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Circuit\Circuit.cs" />
     <Compile Include="Controller\CircuitController.cs" />
     <Compile Include="Controller\FileReader.cs" />
+    <Compile Include="Components\Base\Component.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,14 +60,14 @@
     <Compile Include="Interfaces\INode.cs" />
     <Compile Include="Interfaces\IOutputHandler.cs" />
     <Compile Include="Interfaces\IOutputNode.cs" />
-    <Compile Include="Nodes\AndNode.cs" />
-    <Compile Include="Nodes\Node.cs" />
-    <Compile Include="Nodes\NotAndNode.cs" />
-    <Compile Include="Nodes\NotNode.cs" />
-    <Compile Include="Nodes\NotOrNode.cs" />
-    <Compile Include="Nodes\OrNode.cs" />
-    <Compile Include="Nodes\OutputNode.cs" />
-    <Compile Include="Nodes\XorNode.cs" />
+    <Compile Include="Components\Nodes\AndNode.cs" />
+    <Compile Include="Components\Nodes\Node.cs" />
+    <Compile Include="Components\Nodes\NotAndNode.cs" />
+    <Compile Include="Components\Nodes\NotNode.cs" />
+    <Compile Include="Components\Nodes\NotOrNode.cs" />
+    <Compile Include="Components\Nodes\OrNode.cs" />
+    <Compile Include="Components\Nodes\OutputNode.cs" />
+    <Compile Include="Components\Nodes\XorNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="View\Form1.resx">
@@ -91,16 +93,13 @@
     </Compile>
     <Compile Include="Visitor\IVisitor.cs" />
     <Compile Include="Visitor\InputNodeVisitor.cs" />
-    <Compile Include="Nodes\InputLowNode.cs" />
-    <Compile Include="Nodes\InputHighNode.cs" />
+    <Compile Include="Components\Nodes\InputLowNode.cs" />
+    <Compile Include="Components\Nodes\InputHighNode.cs" />
     <Compile Include="Factory\NodeFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Factory\" />
-    <Folder Include="Visitor\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
