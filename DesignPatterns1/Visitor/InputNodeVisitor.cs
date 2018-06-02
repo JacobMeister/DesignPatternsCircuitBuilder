@@ -17,7 +17,7 @@ namespace DesignPatterns1.Visitor
 		public void Visit(InputLowNode inputLow)
 		{
 			String s = inputLow.GetLiteralName();
-			InputLowNode tempnode = new InputLowNode();
+			InputHighNode tempnode = new InputHighNode();
 			tempnode.SetOutputNodes(inputLow.GetOutputNodes());
 			tempnode.SetLiteralName(inputLow.GetLiteralName());
 			circuitController.GetNodes().Remove(s);
@@ -29,7 +29,7 @@ namespace DesignPatterns1.Visitor
 		public void Visit(InputHighNode inputHigh)
 		{
 			String s = inputHigh.GetLiteralName();
-			InputHighNode tempnode = new InputHighNode();
+			InputLowNode tempnode = new InputLowNode();
 			tempnode.SetOutputNodes(inputHigh.GetOutputNodes());
 			tempnode.SetLiteralName(inputHigh.GetLiteralName());
 			circuitController.GetNodes().Remove(s);
