@@ -24,9 +24,14 @@ namespace DesignPatterns1.Repository
             throw new NotImplementedException();
         }
 
-        internal List<string> GetOutputNodesData()
+        public List<string> GetOutputNodesData()
         {
             throw new NotImplementedException();
         }
+
+		public List<string> CheckNames()
+		{
+			throw new NotImplementedException();
+		}
    	}
 }
