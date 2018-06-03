@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DesignPatterns1.Components.Nodes;
 using DesignPatterns1.Interfaces;
 using DesignPatterns1.Nodes;
 
@@ -7,7 +8,7 @@ namespace DesignPatterns1.Factory
 {
 	public class NodeFactory
 	{
-		private Dictionary<String, Type> _types = new Dictionary<string, Type>();
+		private Dictionary<string, Node> _prototypes = new Dictionary<string, Node>();
 
 		public NodeFactory()
 		{
@@ -15,27 +16,25 @@ namespace DesignPatterns1.Factory
 		}
 
 		private void Initialize() {
-			_types["AND"] = typeof(AndNode);
-			_types["NOT"] = typeof(NotNode);
-			_types["NAND"] = typeof(NotAndNode);
-			_types["NOR"] = typeof(NotOrNode);
-			_types["OR"] = typeof(OrNode);
-			_types["PROBE"] = typeof(OutputNode);
-			_types["INPUT_HIGH"] = typeof(InputHighNode);
-			_types["INPUT_LOW"] = typeof(InputLowNode);
-			_types["XOR"] = typeof(XorNode);
+			_prototypes["AND"] = new AndNode();
+			_prototypes["NOT"] = new NotNode();
+			_prototypes["NAND"] = new NotAndNode();
+			_prototypes["NOR"] = new NotOrNode();
+			_prototypes["OR"] = new OrNode();
+			_prototypes["PROBE"] = new OutputNode();
+			_prototypes["INPUT"] = new InputNode(;
+			_prototypes["XOR"] = new XorNode();
 		}
 
-		public void AddNodeType(string name, Type type)
+		public void RegisterNode(string name, Node node)
 		{
-			_types[name] = type;
+			_prototypes[name] = node;
 		}
 
-		public INode CreateFromName(String type)
+		public Node Create(String type)
 		{
-			Type t = _types[type];
-			INode c = (INode)Activator.CreateInstance(t);
-			return c;
+			Node prototype = _prototypes[type];
+			return prototype.Clone();
 		}
 	}
 }

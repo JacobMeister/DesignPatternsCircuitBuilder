@@ -7,14 +7,14 @@ using DesignPatterns1.Visitor;
 
 namespace DesignPatterns1.Controller
 {
-    public class CircuitController : IInputHandler
+    public class CircuitDirector : IInputHandler
     {
         private Dictionary<String, IInputNode> inputNodes = new Dictionary<string, IInputNode>();
         private Dictionary<String, INode> nodes = new Dictionary<string, INode>();
         private Dictionary<String, IOutputNode> outputNodes = new Dictionary<string, IOutputNode>();
         private IOutputHandler output;
 
-        public CircuitController()
+        public CircuitDirector()
         {
             
         }
@@ -32,11 +32,11 @@ namespace DesignPatterns1.Controller
                 var value = this.inputNodes[s];
                 if (value.GetName() == "INPUT_HIGH")
                 {
-                    value.Accept(new InputNodeVisitor(this));
+                    value.Accept(new DisplayTextVisitor(this));
                 }
                 else
                 {
-                    value.Accept(new InputNodeVisitor(this));
+                    value.Accept(new DisplayTextVisitor(this));
                 }
             }
         }
@@ -122,7 +122,7 @@ namespace DesignPatterns1.Controller
                             try
                             {
                                 NodeFactory factory = new NodeFactory();
-                                INode node = factory.CreateFromName(type);
+                                INode node = factory.Create(type);
                                 node.SetLiteralName(name);
                                 node.SetOutputHandler(output);
 

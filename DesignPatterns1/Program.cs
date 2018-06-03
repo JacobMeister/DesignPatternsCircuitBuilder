@@ -16,7 +16,7 @@ namespace DesignPatterns1
            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            CircuitController C = new CircuitController();
+            CircuitDirector C = new CircuitDirector();
             IOutputHandler mainWindow = new Form1(C);
             C.SetOutputHandler(mainWindow);
             Form window2 = (Form)mainWindow;

@@ -5,13 +5,13 @@ using DesignPatterns1.Visitor;
 
 namespace DesignPatterns1.Nodes
 {
-	public class InputHighNode : IInputNode
+	public class InputLowNode : IInputNode
 	{
 		private List<INode> outputNodes = new List<INode>();
 		private List<bool> values = new List<bool>();
 		private int inputAmount;
 		private String literalName;
-		private String name = "INPUT_HIGH";
+		private String name = "INPUT_LOW";
 		private bool isInput = true;
 		private bool isOutput = false;
 		private IOutputHandler handler;
@@ -21,7 +21,7 @@ namespace DesignPatterns1.Nodes
 			return name;
 		}
 
-		public InputHighNode()
+		public InputLowNode()
 		{
 			outputNodes = new List<INode>();
 			inputAmount = 0;
@@ -29,7 +29,7 @@ namespace DesignPatterns1.Nodes
 
 		public void DoAction()
 		{
-			outputNodes.ForEach((INode node) => node.AddValue(true));
+			outputNodes.ForEach((INode node) => node.AddValue(false));
 		}
 
 
@@ -69,22 +69,22 @@ namespace DesignPatterns1.Nodes
 		{
 			return new InputLowNode();
 		}
-
+		
 		public bool IsInput()
 		{
 			return isInput;
 		}
-
+		
 		public bool IsOutput()
 		{
 			return isOutput;
 		}
-
+		
 		public void HeightenInputAmount()
 		{
 			inputAmount++;
 		}
-
+		
 		public bool DidWork()
 		{
 			if (values.Count == inputAmount || inputAmount < 1)
@@ -96,7 +96,7 @@ namespace DesignPatterns1.Nodes
 				return false;
 			}
 		}
-
+		
 		public List<INode> GetOutputNodes()
 		{
 			return outputNodes;
@@ -106,12 +106,12 @@ namespace DesignPatterns1.Nodes
 		{
 			return literalName;
 		}
-
+		
 		public void SetLiteralName(String name)
 		{
 			this.literalName = name;
 		}
-
+		
 		public void ClearValues()
 		{
 			this.values.Clear();
@@ -121,8 +121,8 @@ namespace DesignPatterns1.Nodes
 		{
 			this.handler = handler;
 		}
-
-		public void Accept(InputNodeVisitor visitor)
+		
+		public void Accept(DisplayTextVisitor visitor)
 		{
 			visitor.Visit(this);
 		}
