@@ -94,10 +94,15 @@
     <Compile Include="Factory\NodeFactory.cs" />
     <Compile Include="Components\Nodes\InputNode.cs" />
     <Compile Include="Factory\EdgeFactory.cs" />
+    <Compile Include="Builder\GenericCircuitBuilder.cs" />
+    <Compile Include="Builder\Builder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Builder\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
