@@ -29,7 +29,7 @@ namespace DesignPatterns1.Repository
             throw new NotImplementedException();
         }
 
-		public List<string> CheckNames()
+		public List<string> CheckNames(List<string> namesToCheck)
 		{
 			throw new NotImplementedException();
 		}
