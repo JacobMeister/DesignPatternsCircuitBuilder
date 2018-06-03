@@ -17,19 +17,18 @@ namespace DesignPatterns1.Factory
 
 		private void Initialize() {
 			_prototypes["AND"] = new AndNode();
-			_prototypes["NOT"] = typeof(NotNode);
-			_prototypes["NAND"] = typeof(NotAndNode);
-			_prototypes["NOR"] = typeof(NotOrNode);
-			_prototypes["OR"] = typeof(OrNode);
-			_prototypes["PROBE"] = typeof(OutputNode);
-			_prototypes["INPUT_HIGH"] = typeof(InputNode);
-			_prototypes["INPUT_LOW"] = typeof(InputNode);
-			_prototypes["XOR"] = typeof(XorNode);
+			_prototypes["NOT"] = new NotNode();
+			_prototypes["NAND"] = new NotAndNode();
+			_prototypes["NOR"] = new NotOrNode();
+			_prototypes["OR"] = new OrNode();
+			_prototypes["PROBE"] = new OutputNode();
+			_prototypes["INPUT"] = new InputNode(;
+			_prototypes["XOR"] = new XorNode();
 		}
 
 		public void RegisterNode(string name, Node node)
 		{
-			_prototypes[name] = type;
+			_prototypes[name] = node;
 		}
 
 		public Node Create(String type)

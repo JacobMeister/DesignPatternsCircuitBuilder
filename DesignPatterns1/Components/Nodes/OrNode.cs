@@ -10,7 +10,7 @@ namespace DesignPatterns1.Nodes
 {
 	public class OrNode : Node
 	{
-		protected OrNode() : base() { }
+		public OrNode() : base() { }
 
 		protected override void CalculateResult()
 		{

@@ -10,7 +10,7 @@ namespace DesignPatterns1.Nodes
 {
 	public class OutputNode : Node
 	{
-		protected OutputNode(string name) : base(name) { }
+		public OutputNode() : base() { }
 
 		protected override void CalculateResult()
 		{

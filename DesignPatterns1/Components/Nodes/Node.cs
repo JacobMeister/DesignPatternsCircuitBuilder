@@ -35,5 +35,9 @@ namespace DesignPatterns1.Nodes
 				outputEdge.GetEndComponent().ReceiveInput(Result);
 			});
 		}
+
+		public Node Clone() {
+			return (Node)this.MemberwiseClone();
+		}
     }
 }

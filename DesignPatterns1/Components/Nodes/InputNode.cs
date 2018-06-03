@@ -6,7 +6,7 @@ namespace DesignPatterns1.Components.Nodes
 {
 	public class InputNode : Node
     {
-		protected InputNode() : base() { }
+		public InputNode() : base() { }
 
 		protected override void CalculateResult()
 		{

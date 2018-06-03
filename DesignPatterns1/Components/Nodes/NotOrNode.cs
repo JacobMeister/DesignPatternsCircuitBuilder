@@ -10,7 +10,7 @@ namespace DesignPatterns1.Nodes
 {
 	public class NotOrNode : Node
 	{
-		protected NotOrNode() : base() { }
+		public NotOrNode() : base() { }
 
 		protected override void CalculateResult()
 		{
