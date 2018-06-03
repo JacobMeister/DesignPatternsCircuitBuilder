@@ -10,7 +10,7 @@ namespace DesignPatterns1.Nodes
 {
 	public class AndNode : Node
 	{
-		protected AndNode(string name) : base(name) { }
+		protected AndNode() : base() { }
 
 		protected override void CalculateResult()
 		{

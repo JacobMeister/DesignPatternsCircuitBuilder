@@ -122,7 +122,7 @@ namespace DesignPatterns1.Controller
                             try
                             {
                                 NodeFactory factory = new NodeFactory();
-                                INode node = factory.CreateFromName(type);
+                                INode node = factory.Create(type);
                                 node.SetLiteralName(name);
                                 node.SetOutputHandler(output);
 

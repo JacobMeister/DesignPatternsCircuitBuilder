@@ -10,12 +10,12 @@ namespace DesignPatterns1.Nodes
     {
 		private bool _result;
 
-		protected Node(string name) : base(name)
+		protected Node() : base()
 		{
 			Result = false;
 		}
 
-		public bool Result { get => _result; private set => _result = value; }
+		public bool Result { get => _result; set => _result = value; }
 
 		public override void Reset()
 		{

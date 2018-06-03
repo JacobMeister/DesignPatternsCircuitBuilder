@@ -18,14 +18,13 @@ namespace DesignPatterns1.Components.Base
 		private long _endTime;
 		protected IVisitor _visitor;
 
-		public string Name { get => _name; private set => _name = value; }
+		public string Name { get => _name; set => _name = value; }
 		public List<bool> Inputs { get => _inputs; private set => _inputs = value; }
 		public long StartTime { get => _startTime; private set => _startTime = value; }
 		public long EndTime { get => _endTime; private set => _endTime = value; }
 
-		protected Component(string name)
+		protected Component()
         {
-            Name = name;
             _outputEdges = new List<Edge>();
             Inputs = new List<bool>();
         }

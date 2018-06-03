@@ -10,7 +10,7 @@ namespace DesignPatterns1.Nodes
 {
 	public class XorNode : Node
 	{
-		protected XorNode(string name) : base(name) { }
+		protected XorNode() : base() { }
 
 		protected override void CalculateResult()
 		{

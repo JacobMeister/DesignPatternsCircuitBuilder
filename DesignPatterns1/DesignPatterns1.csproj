@@ -57,10 +57,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IInputHandler.cs" />
-    <Compile Include="Interfaces\IInputNode.cs" />
-    <Compile Include="Interfaces\INode.cs" />
     <Compile Include="Interfaces\IOutputHandler.cs" />
-    <Compile Include="Interfaces\IOutputNode.cs" />
     <Compile Include="Components\Nodes\AndNode.cs" />
     <Compile Include="Components\Nodes\Node.cs" />
     <Compile Include="Components\Nodes\NotAndNode.cs" />
@@ -96,6 +93,7 @@
     <Compile Include="Visitor\DisplayTextVisitor.cs" />
     <Compile Include="Factory\NodeFactory.cs" />
     <Compile Include="Components\Nodes\InputNode.cs" />
+    <Compile Include="Factory\EdgeFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

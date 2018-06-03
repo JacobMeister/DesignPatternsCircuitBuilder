@@ -10,14 +10,12 @@ namespace DesignPatterns1.Nodes
 {
 	public class OrNode : Node
 	{
-		protected OrNode(string name) : base(name) { }
+		protected OrNode() : base() { }
 
 		protected override void CalculateResult()
 		{
 			Inputs.ForEach((bool input) => { 
-				if (input) {
-					Result = true;
-				}
+				Result |= input;
 			});
 		}
 	}
