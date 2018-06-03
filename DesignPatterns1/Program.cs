@@ -19,8 +19,8 @@ namespace DesignPatterns1
             CircuitDirector C = new CircuitDirector();
             IOutputHandler mainWindow = new Form1(C);
             C.SetOutputHandler(mainWindow);
-            Form window2 = (Form)mainWindow;
-            Application.Run(window2);
+            Form window = (Form)mainWindow;
+            Application.Run(window);
         }
     }
 }
