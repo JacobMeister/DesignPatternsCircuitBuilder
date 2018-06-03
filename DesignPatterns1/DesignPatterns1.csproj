@@ -108,7 +108,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup />
+  <ItemGroup>
+  <Compile Include="View\MultipleCircuits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MultipleCircuits.Designer.cs">
+      <DependentUpon>MultipleCircuits.cs</DependentUpon>
+    </Compile>
+	</ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
