@@ -11,19 +11,24 @@ namespace DesignPatterns1.Components.Circuit
     public class Circuit : Component
     {
         private List<Node> _resultNodes;
+		private List<Node> _entryNodes;
 
         public Circuit(string name) : base(name) { }
 
         public override void CalculateResult()
         {
-            _result = 
+			_entryNodes.ForEach((Node obj) => {
+				obj.Run(_visitor);
+			});
         }
 
-        public override void FeedResultToNext()
-        {
-            _outputComponents.ForEach((Component outputComponent) => {
-                outputComponent.ReceiveInput()
-            });
-        }
+
+		public void AddResultNode(Node resultNode) {
+			_resultNodes.Add(resultNode);
+		}
+
+		public void AddEntryNodes(Node entryNode) {
+			_entryNodes.Add(entryNode);
+		}
     }
 }

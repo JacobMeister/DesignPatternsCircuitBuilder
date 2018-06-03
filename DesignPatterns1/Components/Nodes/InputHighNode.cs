@@ -122,7 +122,7 @@ namespace DesignPatterns1.Nodes
 			this.handler = handler;
 		}
 
-		public void Accept(InputNodeVisitor visitor)
+		public void Accept(DisplayTextVisitor visitor)
 		{
 			visitor.Visit(this);
 		}

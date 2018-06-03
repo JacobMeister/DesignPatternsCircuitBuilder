@@ -4,6 +4,6 @@ namespace DesignPatterns1.Interfaces
 {
 	public interface IInputNode : INode
     {
-        void Accept(InputNodeVisitor visitor);
+        void Accept(DisplayTextVisitor visitor);
     }
 }

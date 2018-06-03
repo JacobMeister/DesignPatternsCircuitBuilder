@@ -32,11 +32,11 @@ namespace DesignPatterns1.Controller
                 var value = this.inputNodes[s];
                 if (value.GetName() == "INPUT_HIGH")
                 {
-                    value.Accept(new InputNodeVisitor(this));
+                    value.Accept(new DisplayTextVisitor(this));
                 }
                 else
                 {
-                    value.Accept(new InputNodeVisitor(this));
+                    value.Accept(new DisplayTextVisitor(this));
                 }
             }
         }

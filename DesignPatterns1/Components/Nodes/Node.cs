@@ -2,29 +2,38 @@
 using DesignPatterns1.Components.Base;
 using DesignPatterns1.Components.Edges;
 using DesignPatterns1.Interfaces;
+using DesignPatterns1.Visitor;
 
 namespace DesignPatterns1.Nodes
 {
     public abstract class Node : Component
     {
-        protected bool _result;
+		private bool _result;
 
-        public Node(string name) : base(name)
-        {
-            _result = false;
+		protected Node(string name) : base(name)
+		{
+			Result = false;
+		}
+
+		public bool Result { get => _result; private set => _result = value; }
+
+		public override void Reset()
+		{
+			base.Reset();
+			Result = false;
         }
 
-        public override void FeedResultToNext()
-        {
-            _outputEdges.ForEach((Edge outputEdge) => {
-                outputEdge.GetEndComponent().ReceiveInput(_result);
-            });
-        }
+		public override void Run(IVisitor visitor)
+		{
+			base.Run(visitor);
+			FeedResultToNext();
+		}
 
-        public override void Reset()
-        {
-            base.Reset();
-            _result = false;
-        }
+		protected void FeedResultToNext()
+		{
+			_outputEdges.ForEach((Edge outputEdge) => {
+				outputEdge.GetEndComponent().ReceiveInput(Result);
+			});
+		}
     }
 }

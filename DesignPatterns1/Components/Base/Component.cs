@@ -11,19 +11,23 @@ namespace DesignPatterns1.Components.Base
 {
     public abstract class Component
     {
-        protected string _name;
-        protected string _typeName;
+		private string _name;
         protected List<Edge> _outputEdges;
-        protected List<bool> _inputs;
-        protected long _startTime;
-        protected long _endTime;
+		private List<bool> _inputs;
+		private long _startTime;
+		private long _endTime;
+		protected IVisitor _visitor;
 
-        public Component(string name)
+		public string Name { get => _name; private set => _name = value; }
+		public List<bool> Inputs { get => _inputs; private set => _inputs = value; }
+		public long StartTime { get => _startTime; private set => _startTime = value; }
+		public long EndTime { get => _endTime; private set => _endTime = value; }
+
+		protected Component(string name)
         {
-            _name = name;
-            _typeName = "";
+            Name = name;
             _outputEdges = new List<Edge>();
-            _inputs = new List<bool>();
+            Inputs = new List<bool>();
         }
 
         public void AddEdge(Edge outputEdge)
@@ -33,41 +37,48 @@ namespace DesignPatterns1.Components.Base
 
         public void ReceiveInput(bool input)
         {
-            _inputs.Add(input);
+            Inputs.Add(input);
+			if (_outputEdges.Count() == Inputs.Count()) {
+				CalculateResult();
+			}
         }
 
         public virtual void Reset()
         {
-            _name = "";
+            Name = "";
             _outputEdges.Clear();
-            _inputs.Clear();
-            _startTime = 0;
-            _endTime = 0;
+            Inputs.Clear();
+            StartTime = 0;
+            EndTime = 0;
         }
 
-        public void Run()
+        public virtual void Run(IVisitor visitor)
         {
-            StartTime();
+			SetVisitor(visitor);
 
-            CalculateResult();
+            StartTimer();
 
-            FeedResultToNext();
+			CalculateResult();
 
-            EndTime();
+            EndTimer();
+
+			Accept(visitor);
         }
 
-        public abstract void CalculateResult();
+        protected abstract void CalculateResult();
 
-        public abstract void FeedResultToNext();
+		private void SetVisitor(IVisitor visitor) {
+			this._visitor = visitor;
+		}
 
-        public void StartTime()
+		protected void StartTimer()
         {
-            _startTime = NanoTime();
+            StartTime = NanoTime();
         }
 
-        public void EndTime()
+		protected void EndTimer()
         {
-            _endTime = NanoTime();
+            EndTime = NanoTime();
         }
 
         public void Accept(IVisitor visitor)

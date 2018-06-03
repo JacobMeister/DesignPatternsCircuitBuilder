@@ -93,10 +93,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Visitor\IVisitor.cs" />
-    <Compile Include="Visitor\InputNodeVisitor.cs" />
-    <Compile Include="Components\Nodes\InputLowNode.cs" />
-    <Compile Include="Components\Nodes\InputHighNode.cs" />
+    <Compile Include="Visitor\DisplayTextVisitor.cs" />
     <Compile Include="Factory\NodeFactory.cs" />
+    <Compile Include="Components\Nodes\InputNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
