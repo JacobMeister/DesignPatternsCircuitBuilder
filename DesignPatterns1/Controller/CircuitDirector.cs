@@ -4,6 +4,7 @@ using System.Diagnostics;
 using DesignPatterns1.Interfaces;
 using DesignPatterns1.Factory;
 using DesignPatterns1.Visitor;
+using DesignPatterns1.FileManagement;
 
 namespace DesignPatterns1.Controller
 {
@@ -13,7 +14,7 @@ namespace DesignPatterns1.Controller
         private Dictionary<String, INode> nodes = new Dictionary<string, INode>();
         private Dictionary<String, IOutputNode> outputNodes = new Dictionary<string, IOutputNode>();
         private IOutputHandler output;
-        private CircuitParser parser;
+        private FileParser parser;
 
         public CircuitDirector()
         {
@@ -23,7 +24,7 @@ namespace DesignPatterns1.Controller
         public void SetOutputHandler(IOutputHandler output)
         {
             this.output = output;
-            this.parser = new CircuitParser(output);
+            this.parser = new FileParser(output);
         }
 
         public void ChangeInputNodes(List<string> temp)
@@ -33,11 +34,11 @@ namespace DesignPatterns1.Controller
                 var value = this.inputNodes[s];
                 if (value.GetName() == "INPUT_HIGH")
                 {
-                    value.Accept(new DisplayTextVisitor(this));
+                    //value.Accept(new DisplayTextVisitor(this));
                 }
                 else
                 {
-                    value.Accept(new DisplayTextVisitor(this));
+                    //value.Accept(new DisplayTextVisitor(this));
                 }
             }
         }
@@ -206,14 +207,7 @@ namespace DesignPatterns1.Controller
             }
             
         }
-
-        public long NanoTime()
-        {
-            long nano = 10000L * Stopwatch.GetTimestamp();
-            nano /= TimeSpan.TicksPerMillisecond;
-            nano *= 100L;
-            return nano;
-        }
+        
     }
 }
 
