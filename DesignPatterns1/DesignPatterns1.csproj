@@ -109,7 +109,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-  <ItemGroup>
     <Folder Include="Builder\" />
     <Folder Include="FileManagement\" />
     <Folder Include="Repository\" />
