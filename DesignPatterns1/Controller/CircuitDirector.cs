@@ -7,14 +7,14 @@ using DesignPatterns1.Visitor;
 
 namespace DesignPatterns1.Controller
 {
-    public class CircuitController : IInputHandler
+    public class CircuitDirector : IInputHandler
     {
         private Dictionary<String, IInputNode> inputNodes = new Dictionary<string, IInputNode>();
         private Dictionary<String, INode> nodes = new Dictionary<string, INode>();
         private Dictionary<String, IOutputNode> outputNodes = new Dictionary<string, IOutputNode>();
         private IOutputHandler output;
 
-        public CircuitController()
+        public CircuitDirector()
         {
             
         }

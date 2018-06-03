@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using DesignPatterns1.Interfaces;
 
-namespace DesignPatterns1.Controller
+namespace DesignPatterns1.FileManagement
 {
     class FileReader
     {
