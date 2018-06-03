@@ -49,8 +49,6 @@
     <Compile Include="Components\Edges\Edge.cs" />
     <Compile Include="Controller\CircuitDirector.cs" />
     <Compile Include="Components\Base\Component.cs" />
-    <Compile Include="Controller\CircuitParser.cs" />
-    <Compile Include="Controller\FileReader.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,10 +109,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Builder\" />
-    <Folder Include="FileManagement\" />
-    <Folder Include="Repository\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
