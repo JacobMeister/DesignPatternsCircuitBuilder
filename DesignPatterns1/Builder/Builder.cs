@@ -9,12 +9,10 @@ namespace DesignPatterns1.Builder
     public abstract class Builder
     {
 		protected Circuit _circuitToBuild;
-		protected EdgeFactory _edgeFactory;
 		protected CircuitDataRepository _circuitDataRepository;
 
 		protected Builder(CircuitDataRepository circuitDataRepository) {
 			this._circuitToBuild = new Circuit();
-			this._edgeFactory = new EdgeFactory();
 			_circuitDataRepository = circuitDataRepository;
 		}
 
@@ -26,6 +24,8 @@ namespace DesignPatterns1.Builder
 
 		public abstract void BuildOutputNodes();
 
-		public abstract Circuit GetResult();
+		public Circuit GetResult() {
+			return _circuitToBuild;
+		}
     }
 }

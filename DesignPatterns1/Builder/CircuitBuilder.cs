@@ -11,10 +11,12 @@ namespace DesignPatterns1.Builder
     {
 		private NodeFactory _nodeFactory;
 		private List<Node> _builtNodes;
+		private EdgeFactory _edgeFactory;
 
 		public CircuitBuilder(CircuitDataRepository circuitDataRepository) : base(circuitDataRepository) {
 			this._nodeFactory = new NodeFactory();
 			this._builtNodes = new List<Node>();
+			this._edgeFactory = new EdgeFactory();
 		}
 
 		public override void BuildEdges()
@@ -63,11 +65,6 @@ namespace DesignPatterns1.Builder
 				_builtNodes.Add(newNode);
 				_circuitToBuild.AddResultNode(newNode);
 			});
-		}
-
-		public override Circuit GetResult()
-		{
-			return _circuitToBuild;
 		}
 	}
 }
