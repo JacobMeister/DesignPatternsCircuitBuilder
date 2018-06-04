@@ -63,12 +63,20 @@ namespace DesignPatterns1.Controller
 
         public void ShowCircuit()
         {
-
+			_circuit.EntryNodes.ForEach((node) => {
+				node.Accept(new DisplayEdgesVisitor(_outputHandler));
+			});
+			_circuit.GridNodes.ForEach((node) => {
+				node.Accept(new DisplayEdgesVisitor(_outputHandler));
+			});
+			_circuit.ResultNodes.ForEach((node) => {
+				node.Accept(new DisplayEdgesVisitor(_outputHandler));
+			});
         }
 
         public void Start()
         {
-            _circuit.Run(new DisplayTextVisitor(_outputHandler));
+            _circuit.Run(new DisplayOutputVisitor(_outputHandler));
         }
         
     }

@@ -5,11 +5,11 @@ using DesignPatterns1.Interfaces;
 
 namespace DesignPatterns1.Visitor
 {
-    public class DisplayTextVisitor : IVisitor
+    public class DisplayOutputVisitor : IVisitor
 	{
 		private IOutputHandler _outputHandler;
 
-		public DisplayTextVisitor(IOutputHandler outputHandler)
+		public DisplayOutputVisitor(IOutputHandler outputHandler)
 		{
 			this._outputHandler = outputHandler;
 		}

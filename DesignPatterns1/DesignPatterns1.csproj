@@ -96,7 +96,7 @@
       <DependentUpon>MultipleCircuits.cs</DependentUpon>
     </Compile>
     <Compile Include="Visitor\IVisitor.cs" />
-    <Compile Include="Visitor\DisplayTextVisitor.cs" />
+    <Compile Include="Visitor\DisplayOutputVisitor.cs" />
     <Compile Include="Factory\NodeFactory.cs" />
     <Compile Include="Components\Nodes\InputNode.cs" />
     <Compile Include="Factory\EdgeFactory.cs" />
@@ -105,6 +105,7 @@
     <Compile Include="FileManagement\FileReader.cs" />
     <Compile Include="FileManagement\FileParser.cs" />
     <Compile Include="Repository\CircuitDataRepository.cs" />
+    <Compile Include="Visitor\DisplayEdgesVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
