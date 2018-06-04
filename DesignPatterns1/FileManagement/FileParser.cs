@@ -26,7 +26,6 @@ namespace DesignPatterns1.FileManagement
 
         public void ParseCircuit(string url)
         {
-
             FileReader fr = new FileReader(_output);
             Boolean readingEdges = false;
             List<String> lines = fr.GetLines(url);

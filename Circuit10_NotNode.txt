@@ -1,0 +1,17 @@
+# NotNode
+# 
+#
+#
+# Description of all the nodes
+#
+A:	INPUT_LOW;
+S:	PROBE;
+NODE1:	NOT;
+
+
+#
+#
+# Description of all the edges
+#
+A:	NODE1;
+NODE1:	S;

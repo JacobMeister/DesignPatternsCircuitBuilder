@@ -23,7 +23,7 @@ namespace DesignPatterns1.Visitor
 
 		public void Visit(InputNode visitee)
 		{
-            _cumulativeDelay = (visitee.EndTime - visitee.StartTime);
+            _cumulativeDelay += (visitee.EndTime - visitee.StartTime);
 
             _outputHandler.SendNodeValues(
 				visitee.Name,
@@ -36,7 +36,7 @@ namespace DesignPatterns1.Visitor
 
 		public void Visit(OutputNode visitee)
 		{
-            _cumulativeDelay = (visitee.EndTime - visitee.StartTime);
+            _cumulativeDelay += (visitee.EndTime - visitee.StartTime);
 
             _outputHandler.SendNodeValues(
 				visitee.Name,
@@ -49,7 +49,7 @@ namespace DesignPatterns1.Visitor
 
 		public void Visit(AndNode visitee)
 		{
-            _cumulativeDelay = (visitee.EndTime - visitee.StartTime);
+            _cumulativeDelay += (visitee.EndTime - visitee.StartTime);
 
             _outputHandler.SendNodeValues(
 				visitee.Name,
@@ -62,7 +62,7 @@ namespace DesignPatterns1.Visitor
 
 		public void Visit(OrNode visitee)
 		{
-            _cumulativeDelay = (visitee.EndTime - visitee.StartTime);
+            _cumulativeDelay += (visitee.EndTime - visitee.StartTime);
 
             _outputHandler.SendNodeValues(
 				visitee.Name,
@@ -75,7 +75,7 @@ namespace DesignPatterns1.Visitor
 
 		public void Visit(NotAndNode visitee)
 		{
-            _cumulativeDelay = (visitee.EndTime - visitee.StartTime);
+            _cumulativeDelay += (visitee.EndTime - visitee.StartTime);
 
             _outputHandler.SendNodeValues(
 				visitee.Name,
@@ -88,7 +88,7 @@ namespace DesignPatterns1.Visitor
 
 		public void Visit(NotNode visitee)
 		{
-            _cumulativeDelay = (visitee.EndTime - visitee.StartTime);
+            _cumulativeDelay += (visitee.EndTime - visitee.StartTime);
 
             _outputHandler.SendNodeValues(
 				visitee.Name,
@@ -101,7 +101,7 @@ namespace DesignPatterns1.Visitor
 
 		public void Visit(NotOrNode visitee)
 		{
-            _cumulativeDelay = (visitee.EndTime - visitee.StartTime);
+            _cumulativeDelay += (visitee.EndTime - visitee.StartTime);
 
             _outputHandler.SendNodeValues(
 				visitee.Name,
@@ -114,7 +114,7 @@ namespace DesignPatterns1.Visitor
 
 		public void Visit(XorNode visitee)
 		{
-            _cumulativeDelay = (visitee.EndTime - visitee.StartTime);
+            _cumulativeDelay += (visitee.EndTime - visitee.StartTime);
 
             _outputHandler.SendNodeValues(
 				visitee.Name,
@@ -136,7 +136,7 @@ namespace DesignPatterns1.Visitor
 
         public void Visit(Node visitee)
         {
-            _cumulativeDelay = (visitee.EndTime - visitee.StartTime);
+            _cumulativeDelay += (visitee.EndTime - visitee.StartTime);
 
             _outputHandler.SendNodeValues(
                 visitee.Name,
