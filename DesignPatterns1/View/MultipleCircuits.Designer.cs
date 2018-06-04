@@ -30,9 +30,10 @@
         {
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label3
@@ -52,19 +53,12 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(110, 255);
             this.textBox2.TabIndex = 1;
-            // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(168, 29);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(235, 255);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(165, 13);
+            this.label4.Location = new System.Drawing.Point(149, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(102, 13);
             this.label4.TabIndex = 3;
@@ -72,7 +66,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(294, 303);
+            this.button1.Location = new System.Drawing.Point(572, 290);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(109, 23);
             this.button1.TabIndex = 4;
@@ -80,12 +74,32 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(295, 29);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(386, 255);
+            this.panel1.TabIndex = 5;
+            this.panel1.AutoScroll = true;
+
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(152, 29);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(115, 255);
+            this.textBox3.TabIndex = 6;
+            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            // 
             // MultipleCircuits
             // 
-            this.ClientSize = new System.Drawing.Size(420, 339);
+            this.ClientSize = new System.Drawing.Size(693, 328);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label3);
             this.Name = "MultipleCircuits";
@@ -102,8 +116,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }

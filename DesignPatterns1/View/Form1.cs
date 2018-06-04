@@ -118,7 +118,7 @@ namespace DesignPatterns1
 
         public void OpenMultipleCircuits(FileParser parser)
         {
-            MultipleCircuits multipleCircuits = new MultipleCircuits();
+            MultipleCircuits multipleCircuits = new MultipleCircuits(parser);
             multipleCircuits.ShowDialog();
         }
     }

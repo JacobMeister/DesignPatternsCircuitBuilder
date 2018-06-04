@@ -13,6 +13,8 @@ namespace DesignPatterns1.FileManagement
         private Dictionary<string, string> _gridNodes;
         private Dictionary<string, List<string>> _edgesData;
 
+        public Dictionary<string, bool> InputNodes { get => _inputNodes; set => _inputNodes = value; }
+
         public FileParser(IOutputHandler output)
         {
             _output = output;
@@ -54,9 +56,36 @@ namespace DesignPatterns1.FileManagement
                     }
                 }
             }
+        }
 
+        public void CreateEdges(Dictionary<String, String> connections)
+        {
+            foreach (KeyValuePair<String, String> newEdge in connections)
+            {
+                //newEdge.value = outputnode of old circuit
+                //newEdge.key = inputnode of new circuit
+                if(!newEdge.Value.Equals("Keep default input"))
+                {
+                    //removes inputnode from new circuit
+                    _inputNodes.Remove(newEdge.Key);
 
+                    //add that node as a regular node
+                    _gridNodes.Add(newEdge.Key, "NODE");
 
+                    //removes outputnode from old circuit
+                    CircuitDataRepository.Instance.DeleteOutputNode(newEdge.Value);
+
+                    //adds outputnode back as regular node
+                    _gridNodes.Add(newEdge.Value, "NODE");
+
+                    //adds the inputNode as target for edge
+                    List<String> edgeTarget = new List<string>();
+                    edgeTarget.Add(newEdge.Key);
+
+                    //adds the edge between outputnode and inputnode
+                    _edgesData.Add(newEdge.Value, edgeTarget);
+                }
+            }
         }
 
         private void AddEdge(String[] cleanedStrings)

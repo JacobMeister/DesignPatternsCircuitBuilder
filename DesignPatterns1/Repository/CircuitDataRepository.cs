@@ -92,5 +92,10 @@ namespace DesignPatterns1.Repository
             _outputNodesData.Clear();
             _edgesData.Clear();
         }
+
+        public void DeleteOutputNode(String nodeName)
+        {
+            _outputNodesData.Remove(nodeName);
+        }
    	}
 }
