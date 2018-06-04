@@ -21,8 +21,8 @@ namespace DesignPatterns1.Components.Base
 
 		public string Name { get => _name; set => _name = value; }
 		public List<bool> Inputs { get => _inputs; private set => _inputs = value; }
-		public long StartTime { get => _startTime; private set => _startTime = value; }
-		public long EndTime { get => _endTime; private set => _endTime = value; }
+		public long StartTime { get => _startTime; protected set => _startTime = value; }
+		public long EndTime { get => _endTime; protected set => _endTime = value; }
         public List<Edge> OutputEdges { get => outputEdges; set => outputEdges = value; }
         public int EntryAmount { get => _entryAmount; set => _entryAmount = value; }
 
@@ -58,8 +58,6 @@ namespace DesignPatterns1.Components.Base
 
         public virtual void Reset()
         {
-            Name = "";
-            OutputEdges.Clear();
             Inputs.Clear();
             StartTime = 0;
             EndTime = 0;

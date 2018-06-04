@@ -87,7 +87,23 @@ namespace DesignPatterns1.Controller
 
         public void Start()
         {
+            CleanCircuit();
             _circuit.Run(new DisplayOutputVisitor(_outputHandler));
+        }
+
+        private void CleanCircuit()
+        {
+            _circuit.EntryNodes.ForEach((node) => {
+                node.Reset();
+            });
+            _circuit.GridNodes.ForEach((node) => {
+                node.Reset();
+            });
+            _circuit.ResultNodes.ForEach((node) => {
+                node.Reset();
+            });
+
+            _circuit.Reset();
         }
     }
 }

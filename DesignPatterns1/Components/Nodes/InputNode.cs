@@ -16,6 +16,12 @@ namespace DesignPatterns1.Components.Nodes
 			visitor.Visit(this);
 		}
 
+        public override void Reset()
+        {
+            StartTime = 0;
+            EndTime = 0;
+        }
+
         public override Node Clone()
         {
             return new InputNode();

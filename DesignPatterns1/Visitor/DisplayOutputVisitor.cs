@@ -109,19 +109,7 @@ namespace DesignPatterns1.Visitor
 
         public void Visit(Circuit visitee)
         {
-			string outputs = "";
-			if (visitee.Inputs.Count > 0) {
-				visitee.Inputs.ForEach(input => {
-				outputs += " " + input + ",";
-			});
-			outputs.Trim();
-			outputs = outputs.Remove(outputs.Length - 1); 
-			} else {
-				outputs = "false";
-			}
-            _outputHandler.Write("Circuit completed with outputs: " 
-				+ outputs
-				+ " in: " 
+            _outputHandler.Write("Circuit completed in: " 
 				+ (visitee.EndTime - visitee.StartTime)
 				+ " nanoseconds!");
         }
