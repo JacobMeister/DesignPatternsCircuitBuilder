@@ -26,9 +26,15 @@ namespace DesignPatterns1.Controller
             _parser = new FileParser(output);
         }
 
-        public void ChangeInputNodes(List<string> temp)
+        public void ChangeInputNode(string nodeName, bool input)
         {
-            
+            _circuit.EntryNodes.ForEach(node =>
+            {
+                if (node.Name.Equals(nodeName))
+                {
+                    node.Result = input;
+                }
+            });
         }
 
         public bool SetCircuit(string s)
@@ -42,6 +48,7 @@ namespace DesignPatterns1.Controller
                 Construct(circuitBuilder);
                 _circuit = circuitBuilder.GetResult();
                 //dowarnings
+                ValidateCircuit();
                 return true;
             }
             else
@@ -51,6 +58,11 @@ namespace DesignPatterns1.Controller
             }
 
             
+        }
+
+        private void ValidateCircuit()
+        {
+            _circuit.Accept(new ValidationVisitor(_outputHandler));
         }
 
         private void Construct(CircuitBuilder builder) {
@@ -78,7 +90,6 @@ namespace DesignPatterns1.Controller
         {
             _circuit.Run(new DisplayOutputVisitor(_outputHandler));
         }
-        
     }
 }
 

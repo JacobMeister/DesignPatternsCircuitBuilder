@@ -8,6 +8,6 @@ namespace DesignPatterns1.Interfaces
         void Start();
         Boolean SetCircuit(String s);
         void ShowCircuit();
-        void ChangeInputNodes(List<String> temp);
+        void ChangeInputNode(string nodeName, bool input);
     }
 }
