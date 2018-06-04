@@ -3,6 +3,7 @@ using DesignPatterns1.Components.Base;
 using DesignPatterns1.Components.Circuit;
 using DesignPatterns1.Components.Edges;
 using DesignPatterns1.Components.Nodes;
+using DesignPatterns1.ErrorManagement;
 using DesignPatterns1.Interfaces;
 
 namespace DesignPatterns1.Visitor
@@ -26,7 +27,7 @@ namespace DesignPatterns1.Visitor
         {
             if (visitee.OutputEdges.Count == 0)
             {
-                _outputHandler.Write("WARNING: Node " + visitee.Name + " is not connected to next nodes!");
+               _outputHandler.Write("WARNING: Node " + visitee.Name + " is not connected to next nodes!");
             }
         }
 
@@ -41,7 +42,7 @@ namespace DesignPatterns1.Visitor
                 {
                     IsInfiniteLoop(visitee.EntryNodes[i], 0, maxNodeCount);
                     if (_isLoopingInfinitly) {
-                        _outputHandler.Write("ERROR: Infinite Loop detected");
+                        ErrorManager.NotifyUser("ERROR", "Infinite Loop detected");
                         return;
                     }
                 }

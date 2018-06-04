@@ -8,7 +8,9 @@ namespace DesignPatterns1.Components.Nodes
 
 		protected override void CalculateResult()
 		{
-			Result = Inputs.First();
+			Inputs.ForEach(input => {
+                Result = input;
+            });
 		}
 
 		public override void Accept(Visitor.IVisitor visitor) 

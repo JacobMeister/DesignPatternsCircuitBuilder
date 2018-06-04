@@ -98,6 +98,7 @@ namespace DesignPatterns1
             this.button7.Text = "Show Circuit";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.Button7_Click);
+            this.button7.Enabled = false;
             // 
             // button6
             // 
@@ -108,6 +109,7 @@ namespace DesignPatterns1
             this.button6.Text = "Start Simulation";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.Button6_Click);
+            this.button6.Enabled = false;
             // 
             // button4
             // 
@@ -136,9 +138,10 @@ namespace DesignPatterns1
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(131, 23);
             this.button5.TabIndex = 8;
-            this.button5.Text = "Multiple Circuits";
+            this.button5.Text = "Add Circuit";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Button5_Click);
+            this.button5.Enabled = false;
             // 
             // Form1
             // 

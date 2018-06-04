@@ -12,7 +12,7 @@ namespace DesignPatterns1.FileManagement
         {
             this.output = output;
         }
-        
+
 
         public List<String> GetLines(String pathString)
         {
@@ -48,23 +48,31 @@ namespace DesignPatterns1.FileManagement
 
         private List<String> GetFile(String path)
         {
-            List<String> list = new List<String>();
-
-            try
+            if (path.ToLower().EndsWith(".txt"))
             {
-                string[] lines = System.IO.File.ReadAllLines(path);
-                foreach (string line in lines)
+                List<String> list = new List<String>();
+
+                try
                 {
-                    list.Add(line);
+                    string[] lines = System.IO.File.ReadAllLines(path);
+                    foreach (string line in lines)
+                    {
+                        list.Add(line);
+                    }
+
+                }
+                catch (IOException e)
+                {
+                    Console.Write(e.StackTrace);
                 }
 
+                return list;
             }
-            catch (IOException e)
+            else
             {
-                Console.Write(e.StackTrace);
+                output.Write("WARNING: File must have .txt extension!");
+                return null;
             }
-
-            return list;
         }
     }
 }

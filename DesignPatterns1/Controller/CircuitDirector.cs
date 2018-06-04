@@ -11,10 +11,9 @@ namespace DesignPatterns1.Controller
 {
     public class CircuitDirector : IInputHandler
     {
-        private FileParser _parser;
         private IOutputHandler _outputHandler;
         private Circuit _circuit;
-
+        
         public CircuitDirector()
         {
             
@@ -23,7 +22,6 @@ namespace DesignPatterns1.Controller
         public void SetOutputHandler(IOutputHandler output)
         {
             _outputHandler = output;
-            _parser = new FileParser(output);
         }
 
         public void ChangeInputNode(string nodeName, bool input)
@@ -32,31 +30,31 @@ namespace DesignPatterns1.Controller
             {
                 if (node.Name.Equals(nodeName))
                 {
-                    node.Result = input;
+                    node.Inputs[0] = input;
                 }
             });
         }
 
-        public bool SetCircuit(string s)
+        public Circuit GetCircuit()
         {
+            return _circuit;
+        }
 
-            
-            if (s.ToLower().EndsWith(".txt"))
-            {
-                _parser.ParseCircuit(s);
-                CircuitBuilder circuitBuilder = new CircuitBuilder(CircuitDataRepository.Instance);
-                Construct(circuitBuilder);
-                _circuit = circuitBuilder.GetResult();
-                ValidateCircuit();
-                return true;
-            }
-            else
-            {
-                _outputHandler.Write("WARNING: File must have .txt extension!");
-                return false;
-            }
+        public void InitiateCircuit(string circuitDataLines)
+        {
+            InitiateParser(circuitDataLines);
+            BuildCircuit();
+            _outputHandler.EnableButtons();  
+        }
 
-            
+        private void InitiateParser(string circuitDataLines) {
+            FileParser parser = new FileParser(_outputHandler);
+            parser.ParseCircuit(circuitDataLines);
+                if (CircuitDataRepository.Instance.IsMultipleCircuit()) {
+                    _outputHandler.OpenMultipleCircuits(parser);
+                }
+            parser.PushLists();
+            _outputHandler.SetCheckList();
         }
 
         private void ValidateCircuit()
@@ -69,6 +67,13 @@ namespace DesignPatterns1.Controller
             _circuit.GridNodes.ForEach((node) => {
                 node.Accept(new ValidationVisitor(_outputHandler));
             });
+        }
+
+        private void BuildCircuit() {
+            CircuitBuilder circuitBuilder = new CircuitBuilder(CircuitDataRepository.Instance);
+            Construct(circuitBuilder);
+            _circuit = circuitBuilder.GetResult();
+            ValidateCircuit();
         }
 
         private void Construct(CircuitBuilder builder) {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DesignPatterns1.Repository
 {
@@ -52,24 +53,28 @@ namespace DesignPatterns1.Repository
             return _outputNodesData;
         }
 
-        public void AddEdgeData(string nodeName, List<string> nodeNamesToConnectTo)
+        public void AddEdgeData(Dictionary<string, List<string>> edgesData)
 		{
-			_edgesData.Add(nodeName, nodeNamesToConnectTo);
+            _edgesData = _edgesData.Union(edgesData).ToDictionary(k => k.Key, v => v.Value);
 		}
 
-		public void AddGridNodeData(string nodeName, string typeOfNode)
+		public void AddGridNodeData(Dictionary<string, string> gridNodesData)
         {
-            _gridNodesData.Add(nodeName, typeOfNode);
+           _gridNodesData = _gridNodesData.Union(gridNodesData).ToDictionary(k => k.Key, v => v.Value);
         }
 
-		public void AddInputNodeData(string nodeName, bool input)
+		public void AddInputNodeData(Dictionary<string, bool> inputNodesData)
         {
-            _inputNodesData.Add(nodeName, input);
+            _inputNodesData = _inputNodesData.Union(inputNodesData).ToDictionary(k => k.Key, v => v.Value);
         }
 
-        public void AddOutputNodeData(string nodeName)
+        public void AddOutputNodeData(List<string> outputNodesData)
         {
-            _outputNodesData.Add(nodeName);
+            _outputNodesData.AddRange(outputNodesData);
+        }
+
+        public bool IsMultipleCircuit() {
+            return _inputNodesData.Count != 0;
         }
 
 		public bool IsNameValid(string name)

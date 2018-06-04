@@ -49,6 +49,7 @@
     <Compile Include="Components\Edges\Edge.cs" />
     <Compile Include="Controller\CircuitDirector.cs" />
     <Compile Include="Components\Base\Component.cs" />
+    <Compile Include="ErrorManagement\ErrorManager.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +81,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\MultipleCircuits.resx">
+      <DependentUpon>MultipleCircuits.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

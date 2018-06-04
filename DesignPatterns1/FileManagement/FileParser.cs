@@ -7,85 +7,114 @@ namespace DesignPatterns1.FileManagement
 {
     public class FileParser
     {
-        IOutputHandler _output;
+        private IOutputHandler _output;
+        private Dictionary<string, bool> _inputNodes;
+        private List<string> _outputNodes;
+        private Dictionary<string, string> _gridNodes;
+        private Dictionary<string, List<string>> _edgesData;
 
         public FileParser(IOutputHandler output)
         {
-            this._output = output;
+            _output = output;
+            _gridNodes = new Dictionary<string, string>();
+            _inputNodes = new Dictionary<string, bool>();
+            _outputNodes = new List<string>();
+            _edgesData = new Dictionary<string, List<string>>();
         }
 
         public void ParseCircuit(string url)
         {
-            //CircuitDataRepository.Instance.ClearData();
+
             FileReader fr = new FileReader(_output);
             Boolean readingEdges = false;
-            foreach (string s in fr.GetLines(url))
+            List<String> lines = fr.GetLines(url);
+            if (lines != null)
             {
-                if(s.Equals("# Description of all the edges"))
+                foreach (string s in lines)
                 {
-                    readingEdges = true;
-                }
-                if (!s.StartsWith("#") && !string.IsNullOrEmpty(s))
-                {
-
-                    if (s.Contains(":") && s.EndsWith(";"))
+                    if (s.Equals("# Description of all the edges"))
                     {
-                        String[] cleanedStrings = CleanUpStrings(s);
-                        if (readingEdges == true)
+                        readingEdges = true;
+                    }
+                    if (!s.StartsWith("#") && !string.IsNullOrEmpty(s))
+                    {
+
+                        if (s.Contains(":") && s.EndsWith(";"))
                         {
-                            AddEdge(cleanedStrings);
-                        }
-                        else
-                        {
-                            AddNode(cleanedStrings);
+                            String[] cleanedStrings = CleanUpStrings(s);
+                            if (readingEdges == true)
+                            {
+                                AddEdge(cleanedStrings);
+                            }
+                            else
+                            {
+                                AddNode(cleanedStrings);
+                            }
                         }
                     }
                 }
             }
+
+
+
         }
 
-        public void AddEdge(String[] cleanedStrings)
+        private void AddEdge(String[] cleanedStrings)
         {
+            if (!CircuitDataRepository.Instance.IsNameValid(cleanedStrings[0]))
+            {
+                cleanedStrings[0] = cleanedStrings[0] + "#";
+            }
             List<String> nodes = new List<string>();
             String[] outputNodes = cleanedStrings[1].Split(',');
             foreach (String nodeName in outputNodes)
             {
-                nodes.Add(nodeName);
+                string name = nodeName;
+                if (!CircuitDataRepository.Instance.IsNameValid(name))
+                {
+                    name = name + "#";
+                }
+                nodes.Add(name);
             }
-            CircuitDataRepository.Instance.AddEdgeData(cleanedStrings[0], nodes);
-            
+            _edgesData.Add(cleanedStrings[0], nodes);
+
         }
 
-        public void AddNode(String[] cleanedStrings)
+        private void AddNode(String[] cleanedStrings)
         {
-            Boolean running = true;
-            while (running)
+
+            if (!CircuitDataRepository.Instance.IsNameValid(cleanedStrings[0]))
             {
-                if (CircuitDataRepository.Instance.IsNameValid(cleanedStrings[0]))
-                {
-                    break;
-                }
                 cleanedStrings[0] = cleanedStrings[0] + "#";
             }
-            if(cleanedStrings[1].Equals("INPUT_LOW"))
+
+            if (cleanedStrings[1].Equals("INPUT_LOW"))
             {
-                CircuitDataRepository.Instance.AddInputNodeData(cleanedStrings[0], false);
+                _inputNodes.Add(cleanedStrings[0], false);
             }
             else if (cleanedStrings[1].Equals("INPUT_HIGH"))
             {
-                CircuitDataRepository.Instance.AddInputNodeData(cleanedStrings[0], true);
+                _inputNodes.Add(cleanedStrings[0], true);
             }
             else if (cleanedStrings[1].Equals("PROBE"))
             {
-                CircuitDataRepository.Instance.AddOutputNodeData(cleanedStrings[0]);
+                _outputNodes.Add(cleanedStrings[0]);
             }
             else
             {
-                CircuitDataRepository.Instance.AddGridNodeData(cleanedStrings[0], cleanedStrings[1]);
+                _gridNodes.Add(cleanedStrings[0], cleanedStrings[1]);
             }
         }
 
-        public String[] CleanUpStrings(String s)
+        public void PushLists()
+        {
+            CircuitDataRepository.Instance.AddEdgeData(_edgesData);
+            CircuitDataRepository.Instance.AddGridNodeData(_gridNodes);
+            CircuitDataRepository.Instance.AddInputNodeData(_inputNodes);
+            CircuitDataRepository.Instance.AddOutputNodeData(_outputNodes);
+        }
+
+        private String[] CleanUpStrings(String s)
         {
             string word = s.Replace(";", "");
             word = word.Replace("\t", "");
@@ -97,6 +126,6 @@ namespace DesignPatterns1.FileManagement
             parts[1] = parts[1].Trim();
             return parts;
         }
-        
+
     }
 }

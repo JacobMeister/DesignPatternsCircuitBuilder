@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DesignPatterns1.FileManagement;
 
 namespace DesignPatterns1.Interfaces
 {
@@ -7,6 +8,8 @@ namespace DesignPatterns1.Interfaces
         void DoOutput(string name, bool value);
 	    void SendNodeValues(string name, string type, List<bool> inputs, bool output, long time);
 	    void Write(string s);
-        
+        void EnableButtons();
+        void OpenMultipleCircuits(FileParser parser);
+        void SetCheckList();
     }
 }
