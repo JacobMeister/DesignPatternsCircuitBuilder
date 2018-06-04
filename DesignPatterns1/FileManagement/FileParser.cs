@@ -64,7 +64,7 @@ namespace DesignPatterns1.FileManagement
             {
                 //newEdge.value = outputnode of old circuit
                 //newEdge.key = inputnode of new circuit
-                if(!newEdge.Value.Equals("Keep default input"))
+                if (!newEdge.Value.Equals("Keep default input"))
                 {
                     //removes inputnode from new circuit
                     _inputNodes.Remove(newEdge.Key);
@@ -94,7 +94,8 @@ namespace DesignPatterns1.FileManagement
                         values.AddRange(edgeTarget);
                         _edgesData[newEdge.Value] = values;
 
-                    } else
+                    }
+                    else
                     {
                         _edgesData.Add(newEdge.Value, edgeTarget);
                     }
@@ -104,32 +105,39 @@ namespace DesignPatterns1.FileManagement
 
         private void AddEdge(String[] cleanedStrings)
         {
-            while(!CircuitDataRepository.Instance.IsNameValid(cleanedStrings[0]))
-            { 
-                cleanedStrings[0] = cleanedStrings[0] + "#";
-            }
+
+            cleanedStrings[0] = GetValidatedString(cleanedStrings[0]);
+
             List<String> nodes = new List<string>();
             String[] outputNodes = cleanedStrings[1].Split(',');
             foreach (String nodeName in outputNodes)
             {
                 string name = nodeName;
-                if (!CircuitDataRepository.Instance.IsNameValid(name))
-                {
-                    name = name + "#";
-                }
+
+                name = GetValidatedString(name);
+
                 nodes.Add(name);
             }
             _edgesData.Add(cleanedStrings[0], nodes);
 
         }
 
+
+        private String GetValidatedString(String unvalidatedString)
+        {
+            while (!CircuitDataRepository.Instance.IsNameValid(unvalidatedString))
+            {
+                unvalidatedString = unvalidatedString + "#";
+            }
+            return unvalidatedString;
+        }
+
         private void AddNode(String[] cleanedStrings)
         {
 
-            if (!CircuitDataRepository.Instance.IsNameValid(cleanedStrings[0]))
-            {
-                cleanedStrings[0] = cleanedStrings[0] + "#";
-            }
+
+            cleanedStrings[0] = GetValidatedString(cleanedStrings[0]);
+
 
             if (cleanedStrings[1].Equals("INPUT_LOW"))
             {
