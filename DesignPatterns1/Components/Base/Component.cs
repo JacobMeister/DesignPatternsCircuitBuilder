@@ -12,32 +12,40 @@ namespace DesignPatterns1.Components.Base
     public abstract class Component
     {
 		private string _name;
-        protected List<Edge> _outputEdges;
-		private List<bool> _inputs;
+        private List<Edge> outputEdges;
+        private List<bool> _inputs;
 		private long _startTime;
 		private long _endTime;
 		protected IVisitor _visitor;
+        private int _entryAmount;
 
 		public string Name { get => _name; set => _name = value; }
 		public List<bool> Inputs { get => _inputs; private set => _inputs = value; }
 		public long StartTime { get => _startTime; private set => _startTime = value; }
 		public long EndTime { get => _endTime; private set => _endTime = value; }
+        public List<Edge> OutputEdges { get => outputEdges; set => outputEdges = value; }
+        public int EntryAmount { get => _entryAmount; set => _entryAmount = value; }
 
-		protected Component()
+        protected Component()
         {
-            _outputEdges = new List<Edge>();
+            OutputEdges = new List<Edge>();
             Inputs = new List<bool>();
+            EntryAmount = 0;
         }
+
+        public void IncrementEntries() {
+			this.EntryAmount++;
+		}
 
         public void AddEdge(Edge outputEdge)
         {
-            _outputEdges.Add(outputEdge);
+            OutputEdges.Add(outputEdge);
         }
 
         public void ReceiveInput(bool input)
         {
             Inputs.Add(input);
-			if (_outputEdges.Count() == Inputs.Count()) {
+			if (EntryAmount >= Inputs.Count()) {
 				CalculateResult();
 			}
         }
@@ -45,7 +53,7 @@ namespace DesignPatterns1.Components.Base
         public virtual void Reset()
         {
             Name = "";
-            _outputEdges.Clear();
+            OutputEdges.Clear();
             Inputs.Clear();
             StartTime = 0;
             EndTime = 0;
@@ -80,7 +88,7 @@ namespace DesignPatterns1.Components.Base
             EndTime = NanoTime();
         }
 
-        public void Accept(IVisitor visitor)
+        public virtual void Accept(IVisitor visitor)
         {
             visitor.Visit(this);
         }

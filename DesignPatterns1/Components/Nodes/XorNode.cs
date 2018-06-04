@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DesignPatterns1.Interfaces;
 
-namespace DesignPatterns1.Nodes
+namespace DesignPatterns1.Components.Nodes
 {
 	public class XorNode : Node
 	{
@@ -16,5 +16,15 @@ namespace DesignPatterns1.Nodes
 		{
 			Result = (Inputs[0] != Inputs[1]);
 		}
-	}
+
+		public override void Accept(Visitor.IVisitor visitor) 
+		{
+			visitor.Visit(this);
+		}
+
+        public override Node Clone()
+        {
+            return new XorNode();
+        }
+    }
 }

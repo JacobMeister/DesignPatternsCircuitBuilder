@@ -1,68 +1,102 @@
 ﻿using System;
 using System.Collections.Generic;
 using DesignPatterns1.Interfaces;
+using DesignPatterns1.Repository;
 
 namespace DesignPatterns1.FileManagement
 {
     public class FileParser
     {
-
-        Dictionary<String, String> nodeList = new Dictionary<String, String>();
-        Dictionary<String, List<String>> edgeList = new Dictionary<String, List<String>>();
-        IOutputHandler output;
+        IOutputHandler _output;
 
         public FileParser(IOutputHandler output)
         {
-            this.output = output;
+            this._output = output;
         }
 
         public void ParseCircuit(string url)
         {
-            FileReader fr = new FileReader(output);
-
+            //CircuitDataRepository.Instance.ClearData();
+            FileReader fr = new FileReader(_output);
+            Boolean readingEdges = false;
             foreach (string s in fr.GetLines(url))
             {
+                if(s.Equals("# Description of all the edges"))
+                {
+                    readingEdges = true;
+                }
                 if (!s.StartsWith("#") && !string.IsNullOrEmpty(s))
                 {
 
                     if (s.Contains(":") && s.EndsWith(";"))
                     {
-                        string word = s.Replace(";", "");
-                        word = word.Replace("\t", "");
-                        word = word.Replace("\\s", "");
-
-                        String[] parts = word.Split(':');
-
-                        String name = parts[0].Trim();
-                        String type = parts[1].Trim();
-                        if (type.Contains(","))
+                        String[] cleanedStrings = CleanUpStrings(s);
+                        if (readingEdges == true)
                         {
-                            List<String> nodes = new List<string>();
-                            String[] outputNodes = type.Split(',');
-                            foreach (String nodeName in outputNodes)
-                            {
-                                nodes.Add(nodeName);
-                            }
-                            edgeList.Add(name, nodes);
+                            AddEdge(cleanedStrings);
                         }
                         else
                         {
-                            nodeList.Add(name, type);
+                            AddNode(cleanedStrings);
                         }
                     }
                 }
             }
         }
 
-        public Dictionary<String, String> GetNodes()
+        public void AddEdge(String[] cleanedStrings)
         {
-            return nodeList;
+            List<String> nodes = new List<string>();
+            String[] outputNodes = cleanedStrings[1].Split(',');
+            foreach (String nodeName in outputNodes)
+            {
+                nodes.Add(nodeName);
+            }
+            CircuitDataRepository.Instance.AddEdgeData(cleanedStrings[0], nodes);
+            
         }
 
-        public Dictionary<String, List<String>> GetEdges()
+        public void AddNode(String[] cleanedStrings)
         {
-            return edgeList;
+            Boolean running = true;
+            while (running)
+            {
+                if (CircuitDataRepository.Instance.IsNameValid(cleanedStrings[0]))
+                {
+                    break;
+                }
+                cleanedStrings[0] = cleanedStrings[0] + "#";
+            }
+            if(cleanedStrings[1].Equals("INPUT_LOW"))
+            {
+                CircuitDataRepository.Instance.AddInputNodeData(cleanedStrings[0], false);
+            }
+            else if (cleanedStrings[1].Equals("INPUT_HIGH"))
+            {
+                CircuitDataRepository.Instance.AddInputNodeData(cleanedStrings[0], true);
+            }
+            else if (cleanedStrings[1].Equals("PROBE"))
+            {
+                CircuitDataRepository.Instance.AddOutputNodeData(cleanedStrings[0]);
+            }
+            else
+            {
+                CircuitDataRepository.Instance.AddGridNodeData(cleanedStrings[0], cleanedStrings[1]);
+            }
         }
 
+        public String[] CleanUpStrings(String s)
+        {
+            string word = s.Replace(";", "");
+            word = word.Replace("\t", "");
+            word = word.Replace("\\s", "");
+
+            String[] parts = word.Split(':');
+
+            parts[0] = parts[0].Trim();
+            parts[1] = parts[1].Trim();
+            return parts;
+        }
+        
     }
 }

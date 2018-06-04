@@ -1,10 +1,4 @@
 ﻿using DesignPatterns1.Components.Base;
-using DesignPatterns1.Nodes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DesignPatterns1.Components.Edges
 {
@@ -23,5 +17,7 @@ namespace DesignPatterns1.Components.Edges
         {
             return _endComponent;
         }
+
+
     }
 }

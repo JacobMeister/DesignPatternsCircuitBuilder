@@ -1,6 +1,5 @@
-﻿using System;
-using DesignPatterns1.Components.Edges;
-using DesignPatterns1.Nodes;
+﻿using DesignPatterns1.Components.Edges;
+using DesignPatterns1.Components.Nodes;
 
 namespace DesignPatterns1.Factory
 {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DesignPatterns1.Interfaces;
 
-namespace DesignPatterns1.Nodes
+namespace DesignPatterns1.Components.Nodes
 {
 	public class AndNode : Node
 	{
@@ -18,5 +18,15 @@ namespace DesignPatterns1.Nodes
 				Result &= input;
 			});
 		}
-	}
+
+        public override void Accept(Visitor.IVisitor visitor) 
+		{
+			visitor.Visit(this);
+		}
+
+        public override Node Clone()
+        {
+            return new AndNode();
+        }
+    }
 }

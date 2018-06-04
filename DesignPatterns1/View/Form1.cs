@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DesignPatterns1.Interfaces;
 using DesignPatterns1.View;
@@ -15,7 +9,7 @@ namespace DesignPatterns1
     public partial class Form1 : Form, IOutputHandler
     {
         private IInputHandler input;
-        private Dictionary<String, IInputNode> inputNodes = new Dictionary<string, IInputNode>();
+        //private Dictionary<String, IInputNode> inputNodes = new Dictionary<string, IInputNode>();
 
         public Form1(IInputHandler input)
         {
@@ -33,17 +27,17 @@ namespace DesignPatterns1
                 path = file.FileName;
                 input.SetCircuit(path);
             }
-            this.inputNodes = input.GetInputNodes();
-            checkedListBox1.Items.Clear();
-            foreach (KeyValuePair<String, IInputNode> entry in inputNodes)
-            {
-                Boolean b = false;
-                if (entry.Value.GetName().Equals("INPUT_HIGH"))
-                {
-                    b = true;
-                }
-                this.checkedListBox1.Items.Add(entry.Value.GetLiteralName(),  b);
-            }
+            //this.inputNodes = input.GetInputNodes();
+            //checkedListBox1.Items.Clear();
+            //foreach (KeyValuePair<String, IInputNode> entry in inputNodes)
+            //{
+            //    Boolean b = false;
+            //    if (entry.Value.GetName().Equals("INPUT_HIGH"))
+            //    {
+            //        b = true;
+            //    }
+            //    this.checkedListBox1.Items.Add(entry.Value.GetLiteralName(),  b);
+            //}
            
         }
 

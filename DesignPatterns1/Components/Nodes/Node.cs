@@ -4,7 +4,7 @@ using DesignPatterns1.Components.Edges;
 using DesignPatterns1.Interfaces;
 using DesignPatterns1.Visitor;
 
-namespace DesignPatterns1.Nodes
+namespace DesignPatterns1.Components.Nodes
 {
     public abstract class Node : Component
     {
@@ -13,6 +13,7 @@ namespace DesignPatterns1.Nodes
 		protected Node() : base()
 		{
 			Result = false;
+			EntryAmount = 0;
 		}
 
 		public bool Result { get => _result; set => _result = value; }
@@ -31,13 +32,16 @@ namespace DesignPatterns1.Nodes
 
 		protected void FeedResultToNext()
 		{
-			_outputEdges.ForEach((Edge outputEdge) => {
+			OutputEdges.ForEach((Edge outputEdge) => {
 				outputEdge.GetEndComponent().ReceiveInput(Result);
 			});
 		}
 
-		public Node Clone() {
-			return (Node)this.MemberwiseClone();
-		}
+		public abstract Node Clone();
+
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

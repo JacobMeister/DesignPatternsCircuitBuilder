@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using DesignPatterns1.Components.Nodes;
-using DesignPatterns1.Interfaces;
-using DesignPatterns1.Nodes;
 
 namespace DesignPatterns1.Factory
 {
-	public class NodeFactory
+    public class NodeFactory
 	{
 		private Dictionary<string, Node> _prototypes = new Dictionary<string, Node>();
 
@@ -22,7 +20,7 @@ namespace DesignPatterns1.Factory
 			_prototypes["NOR"] = new NotOrNode();
 			_prototypes["OR"] = new OrNode();
 			_prototypes["PROBE"] = new OutputNode();
-			_prototypes["INPUT"] = new InputNode(;
+			_prototypes["INPUT"] = new InputNode();
 			_prototypes["XOR"] = new XorNode();
 		}
 

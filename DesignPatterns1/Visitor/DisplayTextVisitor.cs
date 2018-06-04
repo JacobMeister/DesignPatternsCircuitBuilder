@@ -1,13 +1,11 @@
-﻿using System;
-using DesignPatterns1.Components.Base;
+﻿using DesignPatterns1.Components.Base;
+using DesignPatterns1.Components.Circuit;
 using DesignPatterns1.Components.Nodes;
-using DesignPatterns1.Controller;
 using DesignPatterns1.Interfaces;
-using DesignPatterns1.Nodes;
 
 namespace DesignPatterns1.Visitor
 {
-	public class DisplayTextVisitor : IVisitor
+    public class DisplayTextVisitor : IVisitor
 	{
 		private IOutputHandler _outputHandler;
 
@@ -18,7 +16,7 @@ namespace DesignPatterns1.Visitor
 
 		public void Visit(Component visitee)
 		{
-			throw new NotImplementedException();
+            //throw new NotImplementedException();
 		}
 
 		public void Visit(InputNode visitee)
@@ -108,5 +106,29 @@ namespace DesignPatterns1.Visitor
 				(visitee.EndTime - visitee.StartTime)
 			);
 		}
-	}
+
+        public void Visit(Circuit visitee)
+        {
+			string outputs = "";
+			if (visitee.Inputs.Count > 0) {
+				visitee.Inputs.ForEach(input => {
+				outputs += " " + input + ",";
+			});
+			outputs.Trim();
+			outputs = outputs.Remove(outputs.Length - 1); 
+			} else {
+				outputs = "false";
+			}
+            _outputHandler.Write("Circuit completed with outputs: " 
+				+ outputs
+				+ " in: " 
+				+ (visitee.EndTime - visitee.StartTime)
+				+ " nanoseconds!");
+        }
+
+        public void Visit(Node visitee)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

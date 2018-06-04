@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using DesignPatterns1.Components.Circuit;
+﻿using System.Collections.Generic;
+using DesignPatterns1.Components.Nodes;
 using DesignPatterns1.Factory;
-using DesignPatterns1.Nodes;
 using DesignPatterns1.Repository;
 
 namespace DesignPatterns1.Builder
 {
-	public class CircuitBuilder : Builder
+    public class CircuitBuilder : Builder
     {
 		private NodeFactory _nodeFactory;
 		private List<Node> _builtNodes;
@@ -40,6 +38,7 @@ namespace DesignPatterns1.Builder
 				Node newNode = _nodeFactory.Create(entry.Value);
 				newNode.Name = entry.Key;
 				_builtNodes.Add(newNode);
+				_circuitToBuild.AddGridNodes(newNode);
 			}
 		}
 
@@ -60,7 +59,7 @@ namespace DesignPatterns1.Builder
 		{
 			List<string> names = _circuitDataRepository.GetOutputNodesData();
 			names.ForEach((string name) => {
-				Node newNode = _nodeFactory.Create('OUTPUT');
+				Node newNode = _nodeFactory.Create("PROBE");
 				newNode.Name = name;
 				_builtNodes.Add(newNode);
 				_circuitToBuild.AddResultNode(newNode);
