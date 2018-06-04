@@ -34,6 +34,10 @@ namespace DesignPatterns1.Components.Nodes
 		{
 			OutputEdges.ForEach((Edge outputEdge) => {
 				outputEdge.GetEndComponent().ReceiveInput(Result);
+                if (outputEdge.GetEndComponent().CanBeResolved())
+                {
+                    outputEdge.GetEndComponent().Run(_visitor);
+                }
 			});
 		}
 

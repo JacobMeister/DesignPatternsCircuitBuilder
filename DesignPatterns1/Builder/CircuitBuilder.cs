@@ -26,6 +26,7 @@ namespace DesignPatterns1.Builder
 				entry.Value.ForEach((string connectedNodeName) => { 
 					Node endNodeToConnectTo = _builtNodes.Find((Node obj) => obj.Name.Equals(connectedNodeName));
 					startNodeToConnectTo.AddEdge(_edgeFactory.Create(startNodeToConnectTo, endNodeToConnectTo));
+                    endNodeToConnectTo.IncrementEntries();
 				});
 			}
 		}

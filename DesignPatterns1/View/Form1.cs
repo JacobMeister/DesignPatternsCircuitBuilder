@@ -88,7 +88,7 @@ namespace DesignPatterns1
             {
                 checkedListBox1.SelectedItem.ToString()
             };
-            input.ChangeInputNodes(temp);
+            //input.ChangeInputNodes(temp);
         }
 
         private void Button5_Click(object sender, EventArgs e)

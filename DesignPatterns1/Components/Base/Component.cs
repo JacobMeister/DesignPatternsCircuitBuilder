@@ -45,9 +45,15 @@ namespace DesignPatterns1.Components.Base
         public void ReceiveInput(bool input)
         {
             Inputs.Add(input);
-			if (EntryAmount >= Inputs.Count()) {
-				CalculateResult();
-			}
+        }
+
+        public bool CanBeResolved()
+        {
+            if (Inputs.Count() >= EntryAmount)
+            {
+                return true;
+            }
+            return false;
         }
 
         public virtual void Reset()

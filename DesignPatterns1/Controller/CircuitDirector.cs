@@ -47,7 +47,6 @@ namespace DesignPatterns1.Controller
                 CircuitBuilder circuitBuilder = new CircuitBuilder(CircuitDataRepository.Instance);
                 Construct(circuitBuilder);
                 _circuit = circuitBuilder.GetResult();
-                //dowarnings
                 ValidateCircuit();
                 return true;
             }

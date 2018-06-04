@@ -14,9 +14,11 @@ namespace DesignPatterns1.Components.Nodes
 
 		protected override void CalculateResult()
 		{
+            bool areTheSame = true;
 			Inputs.ForEach((bool input) => { 
-				Result &= input;
+				areTheSame &= input;
 			});
+            Result = areTheSame;
 		}
 
         public override void Accept(Visitor.IVisitor visitor) 
