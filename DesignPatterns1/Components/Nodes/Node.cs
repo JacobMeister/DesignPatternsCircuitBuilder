@@ -6,11 +6,11 @@ using DesignPatterns1.Visitor;
 
 namespace DesignPatterns1.Components.Nodes
 {
-    public abstract class Node : Component
+    public class Node : Component
     {
 		private bool _result;
 
-		protected Node() : base()
+		public Node() : base()
 		{
 			Result = false;
 			EntryAmount = 0;
@@ -41,11 +41,22 @@ namespace DesignPatterns1.Components.Nodes
 			});
 		}
 
-		public abstract Node Clone();
+		public virtual Node Clone()
+        {
+            return new Node();
+        }
 
         public override void Accept(IVisitor visitor)
         {
             visitor.Visit(this);
+        }
+
+        protected override void CalculateResult()
+        {
+            Inputs.ForEach(input =>
+            {
+                Result = input;
+            });
         }
     }
 }

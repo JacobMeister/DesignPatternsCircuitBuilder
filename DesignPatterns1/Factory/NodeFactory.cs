@@ -22,7 +22,8 @@ namespace DesignPatterns1.Factory
 			_prototypes["PROBE"] = new OutputNode();
 			_prototypes["INPUT"] = new InputNode();
 			_prototypes["XOR"] = new XorNode();
-		}
+            _prototypes["NODE"] = new Node();
+        }
 
 		public void RegisterNode(string name, Node node)
 		{
