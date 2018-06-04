@@ -62,6 +62,13 @@ namespace DesignPatterns1.Controller
         private void ValidateCircuit()
         {
             _circuit.Accept(new ValidationVisitor(_outputHandler));
+
+            _circuit.EntryNodes.ForEach((node) => {
+                node.Accept(new ValidationVisitor(_outputHandler));
+            });
+            _circuit.GridNodes.ForEach((node) => {
+                node.Accept(new ValidationVisitor(_outputHandler));
+            });
         }
 
         private void Construct(CircuitBuilder builder) {

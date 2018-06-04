@@ -49,47 +49,55 @@ namespace DesignPatterns1.Visitor
 
         public void Visit(Component visitee)
         {
-            throw new System.NotImplementedException();
+         //   IsNotConnected(visitee);
         }
 
         public void Visit(AndNode visitee)
         {
-            throw new System.NotImplementedException();
+            IsNotConnected(visitee);
         }
 
         public void Visit(NotAndNode visitee)
         {
-            throw new System.NotImplementedException();
+            IsNotConnected(visitee);
         }
 
         public void Visit(NotNode visitee)
         {
-            throw new System.NotImplementedException();
+            IsNotConnected(visitee);
         }
 
         public void Visit(OrNode visitee)
         {
-            throw new System.NotImplementedException();
+            IsNotConnected(visitee);
         }
 
         public void Visit(NotOrNode visitee)
         {
-            throw new System.NotImplementedException();
+            IsNotConnected(visitee);
         }
 
         public void Visit(XorNode visitee)
         {
-            throw new System.NotImplementedException();
+            IsNotConnected(visitee);
         }
 
         public void Visit(InputNode visitee)
         {
-            throw new System.NotImplementedException();
+            IsNotConnected(visitee);
         }
 
         public void Visit(OutputNode visitee)
         {
-            throw new System.NotImplementedException();
+            IsNotConnected(visitee);
+        }
+
+        private void IsNotConnected(Node node)
+        {
+            if (node.OutputEdges.Count == 0)
+            {
+                _outputHandler.Write("WARNING: Node " + node.Name + " is not connected to next nodes!");
+            }
         }
 
         private void IsInfiniteLoop(Component node, int level, int maxNodeCount)
