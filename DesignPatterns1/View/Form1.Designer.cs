@@ -32,6 +32,7 @@ namespace DesignPatterns1
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.button8 = new System.Windows.Forms.Button();
@@ -40,12 +41,15 @@ namespace DesignPatterns1
             this.button4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.button5 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.checkedListBox1);
@@ -58,10 +62,21 @@ namespace DesignPatterns1
             this.panel1.Size = new System.Drawing.Size(138, 550);
             this.panel1.TabIndex = 0;
             // 
+            // button5
+            // 
+            this.button5.Enabled = false;
+            this.button5.Location = new System.Drawing.Point(4, 33);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(131, 23);
+            this.button5.TabIndex = 8;
+            this.button5.Text = "Add Circuit";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 212);
+            this.label1.Location = new System.Drawing.Point(3, 195);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 7;
@@ -71,9 +86,10 @@ namespace DesignPatterns1
             // 
             this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(4, 228);
+            this.checkedListBox1.Location = new System.Drawing.Point(3, 211);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(131, 184);
+            this.checkedListBox1.ScrollAlwaysVisible = true;
+            this.checkedListBox1.Size = new System.Drawing.Size(131, 154);
             this.checkedListBox1.TabIndex = 6;
             this.toolTip1.SetToolTip(this.checkedListBox1, "Select which inputs deliver high or low input.\r\nCheck an input for high voltage, " +
         "uncheck for low voltage.");
@@ -91,6 +107,7 @@ namespace DesignPatterns1
             // 
             // button7
             // 
+            this.button7.Enabled = false;
             this.button7.Location = new System.Drawing.Point(4, 154);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(131, 23);
@@ -98,10 +115,10 @@ namespace DesignPatterns1
             this.button7.Text = "Show Circuit";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.Button7_Click);
-            this.button7.Enabled = false;
             // 
             // button6
             // 
+            this.button6.Enabled = false;
             this.button6.Location = new System.Drawing.Point(3, 125);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(132, 23);
@@ -109,7 +126,6 @@ namespace DesignPatterns1
             this.button6.Text = "Start Simulation";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.Button6_Click);
-            this.button6.Enabled = false;
             // 
             // button4
             // 
@@ -132,16 +148,25 @@ namespace DesignPatterns1
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
-            // button5
+            // label2
             // 
-            this.button5.Location = new System.Drawing.Point(4, 33);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(131, 23);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Add Circuit";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
-            this.button5.Enabled = false;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 368);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Outputs";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(3, 384);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox2.Size = new System.Drawing.Size(131, 163);
+            this.textBox2.TabIndex = 11;
+            this.textBox2.WordWrap = false;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // Form1
             // 
@@ -171,6 +196,8 @@ namespace DesignPatterns1
         private Label label1;
         private ToolTip toolTip1;
         private Button button5;
+        private Label label2;
+        private TextBox textBox2;
     }
 }
 

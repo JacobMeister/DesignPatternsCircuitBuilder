@@ -38,6 +38,8 @@ namespace DesignPatterns1.Visitor
 		{
             _cumulativeDelay += (visitee.EndTime - visitee.StartTime);
 
+            _outputHandler.AddOutput(visitee.Name, visitee.Result);
+
             _outputHandler.SendNodeValues(
 				visitee.Name,
 				"Output",
