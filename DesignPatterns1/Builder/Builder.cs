@@ -9,11 +9,9 @@ namespace DesignPatterns1.Builder
     public abstract class Builder
     {
 		protected Circuit _circuitToBuild;
-		protected CircuitDataRepository _circuitDataRepository;
 
-		protected Builder(CircuitDataRepository circuitDataRepository) {
-			this._circuitToBuild = new Circuit();
-			_circuitDataRepository = circuitDataRepository;
+		protected Builder() {
+			_circuitToBuild = new Circuit();
 		}
 
 		public abstract void BuildEdges();

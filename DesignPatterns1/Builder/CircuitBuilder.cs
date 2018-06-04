@@ -11,7 +11,7 @@ namespace DesignPatterns1.Builder
 		private List<Node> _builtNodes;
 		private EdgeFactory _edgeFactory;
 
-		public CircuitBuilder(CircuitDataRepository circuitDataRepository) : base(circuitDataRepository) {
+		public CircuitBuilder() : base() {
 			this._nodeFactory = new NodeFactory();
 			this._builtNodes = new List<Node>();
 			this._edgeFactory = new EdgeFactory();
@@ -19,7 +19,7 @@ namespace DesignPatterns1.Builder
 
 		public override void BuildEdges()
 		{
-			Dictionary<string, List<string>> nameAndConnectedNodeNames = _circuitDataRepository.GetEdgesData();
+			Dictionary<string, List<string>> nameAndConnectedNodeNames = CircuitDataRepository.Instance.GetEdgesData();
 			foreach (KeyValuePair<string, List<string>> entry in nameAndConnectedNodeNames)
 			{
 				Node startNodeToConnectTo = _builtNodes.Find((Node obj) => obj.Name.Equals(entry.Key));
@@ -33,7 +33,7 @@ namespace DesignPatterns1.Builder
 
 		public override void BuildGridNodes()
 		{
-			Dictionary<string, string> nameAndType = _circuitDataRepository.GetGridNodesData();
+			Dictionary<string, string> nameAndType = CircuitDataRepository.Instance.GetGridNodesData();
 			foreach (KeyValuePair<string, string> entry in nameAndType)
 			{
 				Node newNode = _nodeFactory.Create(entry.Value);
@@ -45,7 +45,7 @@ namespace DesignPatterns1.Builder
 
 		public override void BuildInputNodes()
 		{
-			Dictionary<string, bool> nameAndInput = _circuitDataRepository.GetInputNodesData();
+			Dictionary<string, bool> nameAndInput = CircuitDataRepository.Instance.GetInputNodesData();
 			foreach (KeyValuePair<string, bool> entry in nameAndInput)
 			{
 				Node newNode = _nodeFactory.Create("INPUT");
@@ -58,7 +58,7 @@ namespace DesignPatterns1.Builder
 
 		public override void BuildOutputNodes()
 		{
-			List<string> names = _circuitDataRepository.GetOutputNodesData();
+			List<string> names = CircuitDataRepository.Instance.GetOutputNodesData();
 			names.ForEach((string name) => {
 				Node newNode = _nodeFactory.Create("PROBE");
 				newNode.Name = name;

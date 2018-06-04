@@ -90,8 +90,8 @@ namespace DesignPatterns1.FileManagement
 
         private void AddEdge(String[] cleanedStrings)
         {
-            if (!CircuitDataRepository.Instance.IsNameValid(cleanedStrings[0]))
-            {
+            while(!CircuitDataRepository.Instance.IsNameValid(cleanedStrings[0]))
+            { 
                 cleanedStrings[0] = cleanedStrings[0] + "#";
             }
             List<String> nodes = new List<string>();

@@ -70,7 +70,7 @@ namespace DesignPatterns1.Controller
         }
 
         private void BuildCircuit() {
-            CircuitBuilder circuitBuilder = new CircuitBuilder(CircuitDataRepository.Instance);
+            CircuitBuilder circuitBuilder = new CircuitBuilder();
             Construct(circuitBuilder);
             _circuit = circuitBuilder.GetResult();
             ValidateCircuit();

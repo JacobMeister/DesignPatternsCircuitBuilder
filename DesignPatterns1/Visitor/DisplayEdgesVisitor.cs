@@ -17,17 +17,17 @@ namespace DesignPatterns1.Visitor
 
 		public void Visit(Component visitee)
 		{
-			throw new NotImplementedException();
-		}
+            SendOutput(visitee.Name, "Component", GetConnectionsString(visitee));
+        }
 
 		public void Visit(Circuit visitee)
 		{
-			throw new NotImplementedException();
-		}
+            SendOutput(visitee.Name, "Circuit", GetConnectionsString(visitee));
+        }
 
 		public void Visit(Node visitee)
 		{
-			throw new NotImplementedException();
+            SendOutput(visitee.Name, "Node", GetConnectionsString(visitee));
 		}
 
 		public void Visit(AndNode visitee)
@@ -70,15 +70,15 @@ namespace DesignPatterns1.Visitor
 			SendOutput(visitee.Name, "Probe", GetConnectionsString(visitee));
 		}
 
-		private string GetConnectionsString(Node node) {
+		private string GetConnectionsString(Component component) {
 			string connections = "";
-			if (node.OutputEdges.Count == 0)
+			if (component.OutputEdges.Count == 0)
 			{
 				connections = "No Connections";
 			}
 			else
 			{
-				node.OutputEdges.ForEach((edge) => {
+                component.OutputEdges.ForEach((edge) => {
 					connections += " " + edge.GetEndComponent().Name + ", ";
 				});
 				connections.Trim();
