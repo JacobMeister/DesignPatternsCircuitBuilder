@@ -76,14 +76,28 @@ namespace DesignPatterns1.FileManagement
                     CircuitDataRepository.Instance.DeleteOutputNode(newEdge.Value);
 
                     //adds outputnode back as regular node
-                    _gridNodes.Add(newEdge.Value, "NODE");
+                    if (!_gridNodes.ContainsKey(newEdge.Value))
+                    {
+                        _gridNodes.Add(newEdge.Value, "NODE");
+                    }
 
                     //adds the inputNode as target for edge
-                    List<String> edgeTarget = new List<string>();
-                    edgeTarget.Add(newEdge.Key);
+                    List<String> edgeTarget = new List<string>
+                    {
+                        newEdge.Key
+                    };
 
                     //adds the edge between outputnode and inputnode
-                    _edgesData.Add(newEdge.Value, edgeTarget);
+                    if (_edgesData.ContainsKey(newEdge.Value))
+                    {
+                        _edgesData.TryGetValue(newEdge.Value, out List<string> values);
+                        values.AddRange(edgeTarget);
+                        _edgesData[newEdge.Value] = values;
+
+                    } else
+                    {
+                        _edgesData.Add(newEdge.Value, edgeTarget);
+                    }
                 }
             }
         }
