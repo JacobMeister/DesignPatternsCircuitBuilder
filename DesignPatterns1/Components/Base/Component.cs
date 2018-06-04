@@ -39,7 +39,10 @@ namespace DesignPatterns1.Components.Base
 
         public void AddEdge(Edge outputEdge)
         {
-            OutputEdges.Add(outputEdge);
+            if (outputEdge != null)
+            {
+                OutputEdges.Add(outputEdge);
+            }
         }
 
         public void ReceiveInput(bool input)
