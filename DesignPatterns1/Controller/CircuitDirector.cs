@@ -98,7 +98,7 @@ namespace DesignPatterns1.Controller
         }
 
         public void Start()
-        {
+        { 
             CleanCircuit();
             _circuit.Run(new DisplayOutputVisitor(_outputHandler));
         }

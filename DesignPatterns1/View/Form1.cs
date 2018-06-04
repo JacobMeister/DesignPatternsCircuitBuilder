@@ -22,6 +22,7 @@ namespace DesignPatterns1
 
         private void Button4_Click(object sender, EventArgs e)
         {
+            ClearOutputs();
             CircuitDataRepository.Instance.ClearData();
             textBox1.Clear();
             string path = "";
@@ -68,6 +69,7 @@ namespace DesignPatterns1
 
         private void Button6_Click(object sender, EventArgs e)
         {
+            ClearOutputs();
             _input.Start();
         }
 
@@ -120,6 +122,21 @@ namespace DesignPatterns1
         {
             MultipleCircuits multipleCircuits = new MultipleCircuits(parser);
             multipleCircuits.ShowDialog();
+        }
+
+        public void AddOutput(String nodeName, Boolean value)
+        {
+            this.textBox2.AppendText(nodeName + ": " + value + "\n");
+        }
+
+        public void ClearOutputs()
+        {
+            this.textBox2.Clear();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

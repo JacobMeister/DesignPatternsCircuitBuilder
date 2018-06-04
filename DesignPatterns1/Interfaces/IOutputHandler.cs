@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DesignPatterns1.FileManagement;
 
 namespace DesignPatterns1.Interfaces
@@ -11,5 +12,6 @@ namespace DesignPatterns1.Interfaces
         void EnableButtons();
         void OpenMultipleCircuits(FileParser parser);
         void SetCheckList();
+        void AddOutput(String nodeName, Boolean value);
     }
 }
