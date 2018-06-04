@@ -18,11 +18,6 @@ namespace DesignPatterns1.Visitor
             this._outputHandler = outputHandler;
         }
 
-        //public void Visit(Component visitee)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public void Visit(Node visitee)
         {
             if (visitee.OutputEdges.Count == 0)
@@ -55,49 +50,72 @@ namespace DesignPatterns1.Visitor
 
         public void Visit(AndNode visitee)
         {
-            IsNotConnected(visitee);
+            HasNextNode(visitee);
+            WillBeAbleToCalculate(visitee);
         }
 
         public void Visit(NotAndNode visitee)
         {
-            IsNotConnected(visitee);
+            HasNextNode(visitee);
+            WillBeAbleToCalculate(visitee);
         }
 
         public void Visit(NotNode visitee)
         {
-            IsNotConnected(visitee);
+            HasNextNode(visitee);
         }
 
         public void Visit(OrNode visitee)
         {
-            IsNotConnected(visitee);
+            HasNextNode(visitee);
+            WillBeAbleToCalculate(visitee);
         }
 
         public void Visit(NotOrNode visitee)
         {
-            IsNotConnected(visitee);
+            HasNextNode(visitee);
+            WillBeAbleToCalculate(visitee);
         }
 
         public void Visit(XorNode visitee)
         {
-            IsNotConnected(visitee);
+            HasNextNode(visitee);
+            WillBeAbleToCalculate(visitee);
         }
 
         public void Visit(InputNode visitee)
         {
-            IsNotConnected(visitee);
+            HasNextNode(visitee);
         }
 
         public void Visit(OutputNode visitee)
         {
-            IsNotConnected(visitee);
+            HasNextNode(visitee);
+            if (visitee.EntryAmount == 0)
+            {
+                _outputHandler.Write("WARNING: Probe "
+                    + visitee.Name
+                    + " has no receiving signals!");
+            }
         }
 
-        private void IsNotConnected(Node node)
+        private void HasNextNode(Node node)
         {
             if (node.OutputEdges.Count == 0)
             {
                 _outputHandler.Write("WARNING: Node " + node.Name + " is not connected to next nodes!");
+            }
+        }
+
+        private void WillBeAbleToCalculate(Node node)
+        {
+            if (node.EntryAmount < 2)
+            {
+                _outputHandler.Write("WARNING: Node " 
+                    + node.Name 
+                    + " will not be able to function properly since it has not enough signals coming in! --- Current receiving inputs: "
+                    + node.EntryAmount 
+                    + " , requires a minimum of 2 signals to function.");
             }
         }
 
