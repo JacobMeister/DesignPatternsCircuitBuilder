@@ -10,58 +10,21 @@ using System.Threading.Tasks;
 namespace DesignPatterns1.Components.Base
 {
     public abstract class Component
-    {
-		private string _name;
-        private List<Edge> outputEdges;
-        private List<bool> _inputs;
+    {   
 		private long _startTime;
 		private long _endTime;
 		protected IVisitor _visitor;
-        private int _entryAmount;
-
-		public string Name { get => _name; set => _name = value; }
-		public List<bool> Inputs { get => _inputs; private set => _inputs = value; }
+        
 		public long StartTime { get => _startTime; protected set => _startTime = value; }
 		public long EndTime { get => _endTime; protected set => _endTime = value; }
-        public List<Edge> OutputEdges { get => outputEdges; set => outputEdges = value; }
-        public int EntryAmount { get => _entryAmount; set => _entryAmount = value; }
+       
 
         protected Component()
         {
-            OutputEdges = new List<Edge>();
-            Inputs = new List<bool>();
-            EntryAmount = 0;
-        }
-
-        public void IncrementEntries() {
-			this.EntryAmount++;
-		}
-
-        public void AddEdge(Edge outputEdge)
-        {
-            if (outputEdge != null)
-            {
-                OutputEdges.Add(outputEdge);
-            }
-        }
-
-        public void ReceiveInput(bool input)
-        {
-            Inputs.Add(input);
-        }
-
-        public bool CanBeResolved()
-        {
-            if (Inputs.Count() >= EntryAmount)
-            {
-                return true;
-            }
-            return false;
         }
 
         public virtual void Reset()
         {
-            Inputs.Clear();
             StartTime = 0;
             EndTime = 0;
         }

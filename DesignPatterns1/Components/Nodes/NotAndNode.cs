@@ -14,8 +14,12 @@ namespace DesignPatterns1.Components.Nodes
 
 		protected override void CalculateResult()
 		{
+            Result = true;
 			Inputs.ForEach((bool input) => {
-				Result |= input;
+				if (input)
+                {
+                    Result = false;
+                }
 			});
 		}
 

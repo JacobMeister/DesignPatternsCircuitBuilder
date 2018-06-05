@@ -17,12 +17,12 @@ namespace DesignPatterns1.Visitor
 
 		public void Visit(Component visitee)
 		{
-            SendOutput(visitee.Name, "Component", GetConnectionsString(visitee));
+            _outputHandler.Write("Component has no edges");
         }
 
 		public void Visit(Circuit visitee)
 		{
-            SendOutput(visitee.Name, "Circuit", GetConnectionsString(visitee));
+            _outputHandler.Write("Circuit has no edges");
         }
 
 		public void Visit(Node visitee)
@@ -70,15 +70,15 @@ namespace DesignPatterns1.Visitor
 			SendOutput(visitee.Name, "Probe", GetConnectionsString(visitee));
 		}
 
-		private string GetConnectionsString(Component component) {
+		private string GetConnectionsString(Node node) {
 			string connections = "";
-			if (component.OutputEdges.Count == 0)
+			if (node.OutputEdges.Count == 0)
 			{
 				connections = "No Connections";
 			}
 			else
 			{
-                component.OutputEdges.ForEach((edge) => {
+                node.OutputEdges.ForEach((edge) => {
 					connections += " " + edge.GetEndComponent().Name + ", ";
 				});
 				connections.Trim();

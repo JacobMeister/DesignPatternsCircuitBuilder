@@ -1,19 +1,20 @@
 ﻿using DesignPatterns1.Components.Base;
+using DesignPatterns1.Components.Nodes;
 
 namespace DesignPatterns1.Components.Edges
 {
     public class Edge
     {
-        private Component _startComponent;
-        private Component _endComponent;
+        private Node _startComponent;
+        private Node _endComponent;
 
-        public Edge(Component startComponent, Component endComponent)
+        public Edge(Node startComponent, Node endComponent)
         {
             _startComponent = startComponent;
             _endComponent = endComponent;
         }
 
-        public Component GetEndComponent()
+        public Node GetEndComponent()
         {
             return _endComponent;
         }
