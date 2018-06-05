@@ -16,6 +16,9 @@ namespace DP1Tests.ComponentTests
             node.Inputs.Add(true);
             node.Result = true;
 
+            //Assert
+            Assert.IsTrue(node.Inputs.Count == 1);
+
             //Act
             node.Reset();
 
@@ -32,12 +35,15 @@ namespace DP1Tests.ComponentTests
             node.IncrementEntries();
             node.IncrementEntries();
 
-            node.ReceiveInput(true);
-            node.ReceiveInput(true);
+
+            //Assert
+            Assert.IsFalse(node.CanBeResolved());
 
             //Act
+            node.ReceiveInput(true);
+            node.ReceiveInput(true);
             bool result = node.CanBeResolved();
-
+           
             //Assert
             Assert.IsTrue(result);
         }
@@ -49,12 +55,15 @@ namespace DP1Tests.ComponentTests
             Node node = new Node();
             node.IncrementEntries();
             node.IncrementEntries();
-            node.IncrementEntries();
 
             node.ReceiveInput(true);
             node.ReceiveInput(true);
+
+            //Assert
+            Assert.IsTrue(node.CanBeResolved());
 
             //Act
+            node.IncrementEntries();
             bool result = node.CanBeResolved();
 
             //Assert
@@ -66,6 +75,9 @@ namespace DP1Tests.ComponentTests
         {
             //Arrange
             Node node = new Node();
+
+            //Assert
+            Assert.IsTrue(node.Inputs.Count == 0);
 
             //Act
             node.ReceiveInput(true);
@@ -82,6 +94,9 @@ namespace DP1Tests.ComponentTests
             Node nodeToConnectTo = new Node();
 
             Edge edge = new Edge(node, nodeToConnectTo);
+
+            //Assert
+            Assert.IsTrue(node.OutputEdges.Count == 0);
 
             //Act
             node.AddEdge(edge);
