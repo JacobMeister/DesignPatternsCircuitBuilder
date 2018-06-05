@@ -119,7 +119,7 @@ namespace DesignPatterns1.Visitor
             }
         }
 
-        private void IsInfiniteLoop(Component node, int level, int maxNodeCount)
+        private void IsInfiniteLoop(Node node, int level, int maxNodeCount)
         {
             foreach (Edge child in node.OutputEdges)
             {
