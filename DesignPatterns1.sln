@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DP1Tests", "DP1Tests\DP1Tests.csproj", "{D09AB0C2-FA05-463A-A207-40652249A11C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagrams", "Diagrams", "{CD35A17D-D5DB-4349-9AF5-AE3DD9CFB2F3}"
+	ProjectSection(SolutionItems) = preProject
+		..\DP1-DKD.png = ..\DP1-DKD.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
