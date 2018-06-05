@@ -50,11 +50,11 @@
     <Compile Include="Controller\CircuitDirector.cs" />
     <Compile Include="Components\Base\Component.cs" />
     <Compile Include="ErrorManagement\ErrorManager.cs" />
-    <Compile Include="View\Form1.cs">
+    <Compile Include="View\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IInputHandler.cs" />
     <Compile Include="Interfaces\IOutputHandler.cs" />
@@ -69,8 +69,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Visitor\ValidationVisitor.cs" />
-    <EmbeddedResource Include="View\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="View\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
